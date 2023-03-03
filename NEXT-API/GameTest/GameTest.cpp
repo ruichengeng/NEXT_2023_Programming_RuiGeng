@@ -13,12 +13,14 @@
 // Eample data....
 //------------------------------------------------------------------------
 CSimpleSprite *testSprite;
+CSimpleSprite *testSprite2;
 enum
 {
 	ANIM_FORWARDS,
 	ANIM_BACKWARDS,
 	ANIM_LEFT,
 	ANIM_RIGHT,
+	ANIM_EXPLOSION
 };
 //------------------------------------------------------------------------
 
@@ -37,6 +39,13 @@ void Init()
 	testSprite->CreateAnimation(ANIM_FORWARDS, speed, { 14,15,16,17,18,19,20 });
 	testSprite->CreateAnimation(ANIM_LEFT, speed, { 21,22,23,24,25,26,27 });
 	testSprite->SetScale(1.5f);
+
+	testSprite2 = App::CreateSprite(".\\Art\\bomb.bmp", 6, 1);
+	testSprite2->SetPosition(600.0f, 600.0f);
+	float speed2 = 1.0f / 15.0f;
+	testSprite2->CreateAnimation(ANIM_EXPLOSION, speed, { 0,1,2,3,4,5});
+	testSprite2->SetScale(1.5f);
+	testSprite2->SetAnimation(ANIM_EXPLOSION);
 	//------------------------------------------------------------------------
 }
 
@@ -49,6 +58,7 @@ void Update(float deltaTime)
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
 	testSprite->Update(deltaTime);
+	testSprite2->Update(deltaTime);
 
 	if ((App::GetController().GetLeftThumbStickX() != 0.0f) || (App::GetController().GetLeftThumbStickY() != 0.0f))
 	{
@@ -129,6 +139,7 @@ void Render()
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
 	testSprite->Draw();
+	testSprite2->Draw();
 	//------------------------------------------------------------------------
 
 	//------------------------------------------------------------------------
@@ -165,5 +176,6 @@ void Shutdown()
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
 	delete testSprite;
+	delete testSprite2;
 	//------------------------------------------------------------------------
 }
