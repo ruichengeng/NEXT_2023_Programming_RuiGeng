@@ -1,12 +1,4 @@
-﻿  stdafx.cpp
-  app.cpp
-  main.cpp
-  SimpleController.cpp
-  SimpleSound.cpp
-  SimpleSprite.cpp
-  TextureLoader.cpp
-  GameTest.cpp
-  Generating Code...
+﻿  GameTest.cpp
   GameTest.vcxproj -> C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\x64\Debug\GameTest.exe
   C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\\GameTest\glut\bin\x64\freeglut.dll
   1 File(s) copied
