@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="App\app.cpp" />
+    <ClCompile Include="App\main.cpp" />
+    <ClCompile Include="App\SimpleController.cpp" />
+    <ClCompile Include="App\SimpleSound.cpp" />
+    <ClCompile Include="App\SimpleSprite.cpp" />
+    <ClCompile Include="App\TextureLoader.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="GameTest.cpp">
+      <Filter>Challenge Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Challenge Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Challenge Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemies.cpp">
+      <Filter>Challenge Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>Challenge Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="WallBlock.cpp">
+      <Filter>Challenge Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Challenge Entry</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App\app.h" />
+    <ClInclude Include="App\AppSettings.h" />
+    <ClInclude Include="App\main.h" />
+    <ClInclude Include="App\SimpleController.h" />
+    <ClInclude Include="App\SimpleSound.h" />
+    <ClInclude Include="App\SimpleSprite.h" />
+    <ClInclude Include="App\TextureLoader.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Challenge Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Challenge Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemies.h">
+      <Filter>Challenge Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>Challenge Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="WallBlock.h">
+      <Filter>Challenge Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Challenge Entry</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Challenge Entry">
+      <UniqueIdentifier>{df66b95f-f42c-49ea-a8b9-94627f450dd2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
