@@ -8,20 +8,25 @@
 //------------------------------------------------------------------------
 #include "app\app.h"
 //------------------------------------------------------------------------
+#include "Map.h"
+#include "Player.h"
 
 //------------------------------------------------------------------------
-// Eample data....
+// Game Variables
 //------------------------------------------------------------------------
-CSimpleSprite *testSprite;
-CSimpleSprite *testSprite2;
-enum
-{
-	ANIM_FORWARDS,
-	ANIM_BACKWARDS,
-	ANIM_LEFT,
-	ANIM_RIGHT,
-	ANIM_EXPLOSION
-};
+//CSimpleSprite *testSprite;
+//CSimpleSprite *testSprite2;
+Map* gameMap;
+Player* player;
+
+//enum
+//{
+//	ANIM_FORWARDS,
+//	ANIM_BACKWARDS,
+//	ANIM_LEFT,
+//	ANIM_RIGHT,
+//	ANIM_EXPLOSION
+//};
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------------------
@@ -31,22 +36,23 @@ void Init()
 {
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
-	testSprite = App::CreateSprite(".\\Art\\NeoEarlyBomberman.bmp", 7, 4);
-	testSprite->SetPosition(400.0f, 400.0f);
-	float speed = 1.0f / 15.0f;
-	testSprite->CreateAnimation(ANIM_BACKWARDS, speed, { 0,1,2,3,4,5,6 });
-	testSprite->CreateAnimation(ANIM_RIGHT, speed, { 7,8,9,10,11,12,13 });
-	testSprite->CreateAnimation(ANIM_FORWARDS, speed, { 14,15,16,17,18,19,20 });
-	testSprite->CreateAnimation(ANIM_LEFT, speed, { 21,22,23,24,25,26,27 });
-	testSprite->SetScale(1.5f);
+	//testSprite = App::CreateSprite(".\\Art\\NeoEarlyBomberman.bmp", 7, 4);
+	//testSprite->SetPosition(400.0f, 400.0f);
+	//float speed = 1.0f / 15.0f;
+	//testSprite->CreateAnimation(ANIM_BACKWARDS, speed, { 0,1,2,3,4,5,6 });
+	//testSprite->CreateAnimation(ANIM_RIGHT, speed, { 7,8,9,10,11,12,13 });
+	//testSprite->CreateAnimation(ANIM_FORWARDS, speed, { 14,15,16,17,18,19,20 });
+	//testSprite->CreateAnimation(ANIM_LEFT, speed, { 21,22,23,24,25,26,27 });
+	//testSprite->SetScale(1.5f);
 
-	testSprite2 = App::CreateSprite(".\\Art\\bomb.bmp", 6, 1);
-	testSprite2->SetPosition(600.0f, 600.0f);
-	float speed2 = 1.0f / 15.0f;
-	testSprite2->CreateAnimation(ANIM_EXPLOSION, speed, { 0,1,2,3,4,5});
-	testSprite2->SetScale(1.5f);
-	testSprite2->SetAnimation(ANIM_EXPLOSION);
+	//testSprite2 = App::CreateSprite(".\\Art\\bomb.bmp", 6, 1);
+	//testSprite2->SetPosition(600.0f, 600.0f);
+	//float speed2 = 1.0f / 15.0f;
+	//testSprite2->CreateAnimation(ANIM_EXPLOSION, speed2, { 0,1,2,3,4,5});
+	//testSprite2->SetScale(1.5f);
+	//testSprite2->SetAnimation(ANIM_EXPLOSION);
 	//------------------------------------------------------------------------
+	player = new Player();
 }
 
 //------------------------------------------------------------------------
@@ -57,18 +63,37 @@ void Update(float deltaTime)
 {
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
-	testSprite->Update(deltaTime);
-	testSprite2->Update(deltaTime);
+	//testSprite->Update(deltaTime);
+	//testSprite2->Update(deltaTime);
 
+	if (App::GetController().GetLeftThumbStickX() > 0.5f)
+	{
+		player->Move(MOVE_RIGHT);
+	}
+	if (App::GetController().GetLeftThumbStickX() < -0.5f)
+	{
+		player->Move(MOVE_LEFT);
+	}
+	if (App::GetController().GetLeftThumbStickY() > 0.5f)
+	{
+		player->Move(MOVE_TOP);
+	}
+	if (App::GetController().GetLeftThumbStickY() < -0.5f)
+	{
+		player->Move(MOVE_DOWN);
+	}
+	player->Update(deltaTime);
+
+	/*
 	if ((App::GetController().GetLeftThumbStickX() != 0.0f) || (App::GetController().GetLeftThumbStickY() != 0.0f))
 	{
 		if (App::GetController().GetLeftThumbStickX() > 0.5f)
 		{
-			testSprite->SetAnimation(ANIM_RIGHT);
-			float x, y;
-			testSprite->GetPosition(x, y);
-			x += 1.0f;
-			testSprite->SetPosition(x, y);
+			//testSprite->SetAnimation(ANIM_RIGHT);
+			//float x, y;
+			//testSprite->GetPosition(x, y);
+			//x += 1.0f;
+			//testSprite->SetPosition(x, y);
 		}
 		if (App::GetController().GetLeftThumbStickX() < -0.5f)
 		{
@@ -99,27 +124,27 @@ void Update(float deltaTime)
 	{
 		testSprite->SetAnimation(-1);
 	}
-
+	*/
 
 	if (App::GetController().CheckButton(XINPUT_GAMEPAD_DPAD_UP, false))
 	{
-		testSprite->SetScale(testSprite->GetScale() + 0.1f);
+		//testSprite->SetScale(testSprite->GetScale() + 0.1f);
 	}
 	if (App::GetController().CheckButton(XINPUT_GAMEPAD_DPAD_DOWN, false))
 	{
-		testSprite->SetScale(testSprite->GetScale() - 0.1f);
+		//testSprite->SetScale(testSprite->GetScale() - 0.1f);
 	}
 	if (App::GetController().CheckButton(XINPUT_GAMEPAD_DPAD_LEFT, false))
 	{
-		testSprite->SetAngle(testSprite->GetAngle() + 0.1f);
+		//testSprite->SetAngle(testSprite->GetAngle() + 0.1f);
 	}
 	if (App::GetController().CheckButton(XINPUT_GAMEPAD_DPAD_RIGHT, false))
 	{
-		testSprite->SetAngle(testSprite->GetAngle() - 0.1f);
+		//testSprite->SetAngle(testSprite->GetAngle() - 0.1f);
 	}
 	if (App::GetController().CheckButton(XINPUT_GAMEPAD_A, true))
 	{
-		testSprite->SetAnimation(-1);
+		//testSprite->SetAnimation(-1);
 	}
 	//------------------------------------------------------------------------
 	// Sample Sound.
@@ -138,8 +163,9 @@ void Render()
 {	
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
-	testSprite->Draw();
-	testSprite2->Draw();
+	//testSprite->Draw();
+	//testSprite2->Draw();
+	player->Render();
 	//------------------------------------------------------------------------
 
 	//------------------------------------------------------------------------
@@ -175,7 +201,8 @@ void Shutdown()
 {	
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
-	delete testSprite;
-	delete testSprite2;
+	//delete testSprite;
+	//delete testSprite2;
+	delete player;
 	//------------------------------------------------------------------------
 }

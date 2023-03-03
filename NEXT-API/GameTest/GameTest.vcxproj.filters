@@ -29,6 +29,9 @@
     <ClCompile Include="Map.cpp">
       <Filter>Challenge Entry</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Challenge Entry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\app.h" />
@@ -56,6 +59,12 @@
       <Filter>Challenge Entry</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
+      <Filter>Challenge Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumClasses.h">
+      <Filter>Challenge Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
       <Filter>Challenge Entry</Filter>
     </ClInclude>
   </ItemGroup>
