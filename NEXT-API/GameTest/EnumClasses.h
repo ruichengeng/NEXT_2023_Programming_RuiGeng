@@ -2,7 +2,7 @@
 
 enum AnimationType
 {
-	//For player ---- expandable for more features like hurt, dizziness, effects of enemy spells, etc
+	//Movement player+enemies ---- expandable for more features like hurt, dizziness, effects of spells, etc
 	ANIM_FORWARDS,
 	ANIM_BACKWARDS,
 	ANIM_LEFT,

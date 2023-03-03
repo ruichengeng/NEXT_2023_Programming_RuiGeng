@@ -20,7 +20,9 @@ public:
 private:
 	//Animations
 	void SetAnimationState(unsigned int state);
+	
 
 	//Variables
 	CSimpleSprite* GOSprite;
+	Vector2 SpriteHalfSize; //For collision checks
 };

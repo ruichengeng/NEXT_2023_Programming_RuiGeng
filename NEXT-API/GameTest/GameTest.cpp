@@ -53,6 +53,7 @@ void Init()
 	//testSprite2->SetAnimation(ANIM_EXPLOSION);
 	//------------------------------------------------------------------------
 	player = new Player();
+	gameMap = new Map();
 }
 
 //------------------------------------------------------------------------
@@ -83,6 +84,7 @@ void Update(float deltaTime)
 		player->Move(MOVE_DOWN);
 	}
 	player->Update(deltaTime);
+	gameMap->Update(deltaTime);
 
 	/*
 	if ((App::GetController().GetLeftThumbStickX() != 0.0f) || (App::GetController().GetLeftThumbStickY() != 0.0f))
@@ -166,6 +168,7 @@ void Render()
 	//testSprite->Draw();
 	//testSprite2->Draw();
 	player->Render();
+	gameMap->Render();
 	//------------------------------------------------------------------------
 
 	//------------------------------------------------------------------------
@@ -204,5 +207,6 @@ void Shutdown()
 	//delete testSprite;
 	//delete testSprite2;
 	delete player;
+	delete gameMap;
 	//------------------------------------------------------------------------
 }
