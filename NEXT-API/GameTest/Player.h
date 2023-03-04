@@ -38,4 +38,6 @@ private:
 private:
 	std::vector<Bomb*> bombPool;
 	PlayerStat playerStatistics;
+	float bombSpawnCoolDown = 0.5f;
+	float currentSpawnCoolDown = 0.0f;
 };

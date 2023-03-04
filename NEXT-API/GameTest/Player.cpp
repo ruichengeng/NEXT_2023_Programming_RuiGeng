@@ -20,20 +20,24 @@ Player::Player(int id):GameObject()
 
 void Player::PlaceBomb(int bombType)
 {
-	float x, y;
-	GetSprite()->GetPosition(x, y);
-
-	for (int a = 0; a < bombPool.size(); a++)
+	if (currentSpawnCoolDown == 0.0f)
 	{
-		if (!bombPool[a]->Exploded && !bombPool[a]->isActive)
-		{
-			bombPool[a]->SetBomb(x, y);
-			return;
-		}
-	}
+		float x, y;
+		GetSprite()->GetPosition(x, y);
 
-	AddToBombPool(1, bombType);
-	PlaceBomb(bombType);
+		for (int a = 0; a < bombPool.size(); a++)
+		{
+			if (!bombPool[a]->Exploded && !bombPool[a]->isActive)
+			{
+				bombPool[a]->SetBomb(x, y);
+				currentSpawnCoolDown = bombSpawnCoolDown;
+				return;
+			}
+		}
+
+		AddToBombPool(1, bombType);
+		PlaceBomb(bombType);
+	}
 }
 
 void Player::AddToBombPool(int count, int bombType)
@@ -48,8 +52,17 @@ void Player::AddToBombPool(int count, int bombType)
 
 void Player::UpdatePlayerElements(float deltaTime)
 {
-	playerStatistics.timeElapsed += deltaTime;
+	playerStatistics.timeElapsed += deltaTime * 0.001f;
 	Update(deltaTime);
+
+	if (currentSpawnCoolDown > 0.0f)
+	{
+		currentSpawnCoolDown -= deltaTime * 0.001f;
+	}
+	else
+	{
+		currentSpawnCoolDown = 0.0f;
+	}
 
 	for (int i = 0; i < bombPool.size(); i++)
 	{
@@ -71,10 +84,16 @@ void Player::RenderPlayerElements()
 
 void Player::RenderUIComponents()
 {
+	std::string level = "Level: " + std::to_string(playerStatistics.CharacterLevel);
 	std::string lives = "HP: " + std::to_string(playerStatistics.Lives);
 	std::string bomb = "Bomb: " + std::to_string(playerStatistics.BombCount);
+	std::string enemy = "Enemy Killed: " + std::to_string(playerStatistics.EnemyKills);
+	std::string xp = "XP: " + std::to_string(playerStatistics.XP);
 	std::string time = "Time: " + std::to_string((int)roundf(playerStatistics.timeElapsed)) + "s";
-	App::Print(512, 700, lives.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(512, 700, level.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(512, 650, lives.c_str(), 0.0f, 0.0f, 0.0f);
 	App::Print(512, 600, bomb.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(512, 500, time.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(512, 550, enemy.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(512, 500, xp.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(512, 450, time.c_str(), 0.0f, 0.0f, 0.0f);
 }
