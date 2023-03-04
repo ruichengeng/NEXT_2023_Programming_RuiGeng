@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include <string>
 #include "CollisionManager.h"
 #include "../GameTest/App/SimpleSprite.h"
 #include "app\app.h"

@@ -1,8 +1,22 @@
 #pragma once
 #include "Bomb.h"
 
-//Player class, responsible for the character selection and behaviours
+//Player Stats for health, bomb count, and other variables
+class PlayerStat
+{
+public:
+	//Default values, changeable within the player class constructor
+	int CharacterLevel = 1; //Can level up to increase damage output, gain extra abilities, etc.
+	int Lives = 3;
+	int BombCount = 10;
+	int EnemyKills = 0;
+	int XP = 0;
 
+	//Variables for the gameplay experience
+	float timeElapsed = 0.0f;
+};
+
+//Player class, responsible for the character selection and behaviours
 class Player : public GameObject
 {
 public:
@@ -13,11 +27,15 @@ public:
 
 	//Bomb object-pool functions
 	void PlaceBomb(int bombType);
-	void CreateBombPool(int count);
+	void AddToBombPool(int count, int bombType);
 	//void ReturnBomb(Bomb* b);
 	void UpdatePlayerElements(float deltaTime); //For player and bombs
 	void RenderPlayerElements();
 
 private:
+	void RenderUIComponents();
+
+private:
 	std::vector<Bomb*> bombPool;
+	PlayerStat playerStatistics;
 };

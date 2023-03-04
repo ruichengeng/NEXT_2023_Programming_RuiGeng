@@ -12,7 +12,10 @@ Player::Player(int id):GameObject()
 	CreateGOAnimation(ANIM_FORWARDS, 1.0f / 15.0f, { 14,15,16,17,18,19,20 });
 	CreateGOAnimation(ANIM_LEFT, 1.0f / 15.0f, { 21,22,23,24,25,26,27 });
 
-	CreateBombPool(10);
+	playerStatistics = PlayerStat();
+
+	bombPool.clear();
+	AddToBombPool(10, 0);
 }
 
 void Player::PlaceBomb(int bombType)
@@ -25,26 +28,27 @@ void Player::PlaceBomb(int bombType)
 		if (!bombPool[a]->Exploded && !bombPool[a]->isActive)
 		{
 			bombPool[a]->SetBomb(x, y);
+			return;
 		}
 	}
 
-	Bomb* newBomb = new Bomb(bombType);
-	newBomb->SetBomb(x, y);
-	bombPool.push_back(newBomb);
+	AddToBombPool(1, bombType);
+	PlaceBomb(bombType);
 }
 
-void Player::CreateBombPool(int count)
+void Player::AddToBombPool(int count, int bombType)
 {
-	bombPool.clear();
-
 	for (int b = 0; b < count; b++)
 	{
-		bombPool.push_back(new Bomb());
+		Bomb* newBomb = new Bomb(bombType);
+		newBomb->isActive = false;
+		bombPool.push_back(newBomb);
 	}
 }
 
 void Player::UpdatePlayerElements(float deltaTime)
 {
+	playerStatistics.timeElapsed += deltaTime;
 	Update(deltaTime);
 
 	for (int i = 0; i < bombPool.size(); i++)
@@ -61,4 +65,16 @@ void Player::RenderPlayerElements()
 	{
 		if (bombPool[i]->isActive) bombPool[i]->Render();
 	}
+
+	RenderUIComponents();
+}
+
+void Player::RenderUIComponents()
+{
+	std::string lives = "HP: " + std::to_string(playerStatistics.Lives);
+	std::string bomb = "Bomb: " + std::to_string(playerStatistics.BombCount);
+	std::string time = "Time: " + std::to_string((int)roundf(playerStatistics.timeElapsed)) + "s";
+	App::Print(512, 700, lives.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(512, 600, bomb.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(512, 500, time.c_str(), 0.0f, 0.0f, 0.0f);
 }
