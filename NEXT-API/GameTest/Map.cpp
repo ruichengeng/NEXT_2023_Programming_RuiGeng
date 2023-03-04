@@ -19,6 +19,11 @@ void Map::Update(float deltaTime)
 	{
 		mapEnemyPool[i]->Update(deltaTime);
 	}
+
+	for (auto wall : mapWallBlocks)
+	{
+		if (wall->BlockType != INDESTRUCTIBLE) wall->Update(deltaTime);
+	}
 }
 
 void Map::Render()
@@ -33,9 +38,16 @@ void Map::Render()
 		//App::DrawLine(mapGridIntersections[a].x, mapGridIntersections[a].y, mapGridIntersections[a + 1].x, mapGridIntersections[a + 1].y, 0.0f, 0.0f, 0.0f);
 	}
 
-	for (int i = 0; i < mapEnemyPool.size(); i++)
+	//Draw Walls and Blocks
+	for (int b = 0; b < mapWallBlocks.size(); b++)
 	{
-		if (mapEnemyPool[i]->isActive) mapEnemyPool[i]->Render();
+		if (mapWallBlocks[b]->isActive) mapWallBlocks[b]->Render();
+	}
+
+	//Draw enemies
+	for (int e = 0; e < mapEnemyPool.size(); e++)
+	{
+		if (mapEnemyPool[e]->isActive) mapEnemyPool[e]->Render();
 	}
 }
 
@@ -73,6 +85,24 @@ void Map::CreateGrid(int x, int y)
 	}
 
 	
+	//Creates the wall block pool
+
+	//TESTING
+	//jkladsfhljkdshfkajsdhfjklahsdfjkhasdklf
+
+	mapWallBlocks.clear();
+
+	for (int b = 0; b < 50; b++)
+	{
+		//Temp for testing
+
+		WallBlock* newWallBlock = new WallBlock(mapGridIntersections[b], Vector2(x, y), rand()%3);
+
+		//-----------------------------
+		mapWallBlocks.push_back(newWallBlock);
+	}
+
+
 
 	//"Path finding" for AI and player
 }

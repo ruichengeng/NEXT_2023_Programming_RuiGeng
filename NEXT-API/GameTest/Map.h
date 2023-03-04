@@ -16,7 +16,7 @@ public:
 	//For Object Pooling
 	//Enemies
 	void CreateEnemyPool(int count);
-	void ReturnEnemy(Enemies* enemy);
+	//void ReturnEnemy(Enemies* enemy);
 
 	//Wall Blocks
 	void CreateWallBlockPool(int count);
@@ -33,7 +33,7 @@ private:
 	CSimpleSprite* mapBackgroundSprite;
 
 	std::vector<Enemies*> mapEnemyPool;
-	//std::vector<WallBlock*> mapWallBlocks;
+	std::vector<WallBlock*> mapWallBlocks;
 
 	//Grid
 	std::vector<Vector2> mapGridIntersections;
