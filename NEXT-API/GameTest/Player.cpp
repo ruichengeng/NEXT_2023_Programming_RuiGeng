@@ -11,9 +11,44 @@ Player::Player(int id):GameObject()
 	CreateGOAnimation(ANIM_RIGHT, 1.0f / 15.0f, { 7,8,9,10,11,12,13 });
 	CreateGOAnimation(ANIM_FORWARDS, 1.0f / 15.0f, { 14,15,16,17,18,19,20 });
 	CreateGOAnimation(ANIM_LEFT, 1.0f / 15.0f, { 21,22,23,24,25,26,27 });
+
+	CreateBombPool(10);
 }
 
 void Player::PlaceBomb(int bombType)
 {
+	float x, y;
+	GetSprite()->GetPosition(x, y);
 
+	for (int a = 0; a < bombPool.size(); a++)
+	{
+		if (!bombPool[a]->Exploded && !bombPool[a]->isActive)
+		{
+			bombPool[a]->SetBomb(x, y);
+		}
+	}
+
+	Bomb* newBomb = new Bomb(bombType);
+	newBomb->SetBomb(x, y);
+	bombPool.push_back(newBomb);
+}
+
+void Player::CreateBombPool(int count)
+{
+	bombPool.clear();
+
+	for (int b = 0; b < count; b++)
+	{
+		bombPool.push_back(new Bomb());
+	}
+}
+
+void Player::UpdatePlayerElements(float deltaTime)
+{
+	Update(deltaTime);
+
+	for (int i = 0; i < bombPool.size(); i++)
+	{
+		if (bombPool[i]->isActive) bombPool[i]->UpdateBombState(deltaTime);
+	}
 }

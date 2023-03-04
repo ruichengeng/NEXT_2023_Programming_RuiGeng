@@ -14,20 +14,9 @@
 //------------------------------------------------------------------------
 // Game Variables
 //------------------------------------------------------------------------
-//CSimpleSprite *testSprite;
-//CSimpleSprite *testSprite2;
 Map* gameMap;
 Player* player;
 
-//enum
-//{
-//	ANIM_FORWARDS,
-//	ANIM_BACKWARDS,
-//	ANIM_LEFT,
-//	ANIM_RIGHT,
-//	ANIM_EXPLOSION
-//};
-//------------------------------------------------------------------------
 
 //------------------------------------------------------------------------
 // Called before first update. Do any initial setup here.
@@ -36,14 +25,6 @@ void Init()
 {
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
-	//testSprite = App::CreateSprite(".\\Art\\NeoEarlyBomberman.bmp", 7, 4);
-	//testSprite->SetPosition(400.0f, 400.0f);
-	//float speed = 1.0f / 15.0f;
-	//testSprite->CreateAnimation(ANIM_BACKWARDS, speed, { 0,1,2,3,4,5,6 });
-	//testSprite->CreateAnimation(ANIM_RIGHT, speed, { 7,8,9,10,11,12,13 });
-	//testSprite->CreateAnimation(ANIM_FORWARDS, speed, { 14,15,16,17,18,19,20 });
-	//testSprite->CreateAnimation(ANIM_LEFT, speed, { 21,22,23,24,25,26,27 });
-	//testSprite->SetScale(1.5f);
 
 	//testSprite2 = App::CreateSprite(".\\Art\\bomb.bmp", 6, 1);
 	//testSprite2->SetPosition(600.0f, 600.0f);
@@ -62,71 +43,34 @@ void Init()
 //------------------------------------------------------------------------
 void Update(float deltaTime)
 {
-	//------------------------------------------------------------------------
-	// Example Sprite Code....
-	//testSprite->Update(deltaTime);
-	//testSprite2->Update(deltaTime);
-
-	if (App::GetController().GetLeftThumbStickX() > 0.5f)
-	{
-		player->Move(MOVE_RIGHT);
-	}
-	if (App::GetController().GetLeftThumbStickX() < -0.5f)
-	{
-		player->Move(MOVE_LEFT);
-	}
-	if (App::GetController().GetLeftThumbStickY() > 0.5f)
-	{
-		player->Move(MOVE_TOP);
-	}
-	if (App::GetController().GetLeftThumbStickY() < -0.5f)
-	{
-		player->Move(MOVE_DOWN);
-	}
-	player->Update(deltaTime);
-	gameMap->Update(deltaTime);
-
-	/*
 	if ((App::GetController().GetLeftThumbStickX() != 0.0f) || (App::GetController().GetLeftThumbStickY() != 0.0f))
 	{
 		if (App::GetController().GetLeftThumbStickX() > 0.5f)
 		{
-			//testSprite->SetAnimation(ANIM_RIGHT);
-			//float x, y;
-			//testSprite->GetPosition(x, y);
-			//x += 1.0f;
-			//testSprite->SetPosition(x, y);
+			player->Move(MOVE_RIGHT);
 		}
 		if (App::GetController().GetLeftThumbStickX() < -0.5f)
 		{
-			testSprite->SetAnimation(ANIM_LEFT);
-			float x, y;
-			testSprite->GetPosition(x, y);
-			x -= 1.0f;
-			testSprite->SetPosition(x, y);
+			player->Move(MOVE_LEFT);
 		}
 		if (App::GetController().GetLeftThumbStickY() > 0.5f)
 		{
-			testSprite->SetAnimation(ANIM_FORWARDS);
-			float x, y;
-			testSprite->GetPosition(x, y);
-			y -= 1.0f;
-			testSprite->SetPosition(x, y);
+			player->Move(MOVE_TOP);
 		}
 		if (App::GetController().GetLeftThumbStickY() < -0.5f)
 		{
-			testSprite->SetAnimation(ANIM_BACKWARDS);
-			float x, y;
-			testSprite->GetPosition(x, y);
-			y += 1.0f;
-			testSprite->SetPosition(x, y);
+			player->Move(MOVE_DOWN);
 		}
 	}
 	else
 	{
-		testSprite->SetAnimation(-1);
+		player->Move(MOVE_NONE);
 	}
-	*/
+
+	//if (App::GetController().CheckButton(SPACEBUTTON))
+
+	player->UpdatePlayerElements(deltaTime);
+	gameMap->Update(deltaTime);
 
 	if (App::GetController().CheckButton(XINPUT_GAMEPAD_DPAD_UP, false))
 	{
@@ -151,9 +95,9 @@ void Update(float deltaTime)
 	//------------------------------------------------------------------------
 	// Sample Sound.
 	//------------------------------------------------------------------------
-	if (App::GetController().CheckButton(XINPUT_GAMEPAD_B, true))
+	if (App::IsKeyPressed(VK_SPACE))
 	{
-		App::PlaySound(".\\TestData\\Test.wav");
+		player->PlaceBomb(0);
 	}
 }
 
@@ -164,9 +108,6 @@ void Update(float deltaTime)
 void Render()
 {	
 	//------------------------------------------------------------------------
-	// Example Sprite Code....
-	//testSprite->Draw();
-	//testSprite2->Draw();
 	player->Render();
 	gameMap->Render();
 	//------------------------------------------------------------------------
@@ -202,11 +143,6 @@ void Render()
 //------------------------------------------------------------------------
 void Shutdown()
 {	
-	//------------------------------------------------------------------------
-	// Example Sprite Code....
-	//delete testSprite;
-	//delete testSprite2;
 	delete player;
 	delete gameMap;
-	//------------------------------------------------------------------------
 }

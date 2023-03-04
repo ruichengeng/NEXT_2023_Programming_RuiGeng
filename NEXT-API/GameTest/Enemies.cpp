@@ -32,6 +32,12 @@ Enemies::Enemies(int id): GameObject(), enemyID(id)
 
 void Enemies::ExplosionDamage(int hp_damage)
 {
+	///enemy hurt animation then dies
+	
+	//animation here aksjdhaildfhalksdhfkasjdhfkasdhfklahsdf
+
+	
+	isActive = false;
 }
 
 void Enemies::EnemyDropTraps()

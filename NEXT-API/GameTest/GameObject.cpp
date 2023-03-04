@@ -50,10 +50,15 @@ void GameObject::Move(MovementDirection d)
 
 void GameObject::Render()
 {
-	GOSprite->Draw();
+	if(isActive) GOSprite->Draw();
 }
 
 void GameObject::Update(float deltaTime)
 {
-	GOSprite->Update(deltaTime);
+	if(isActive) GOSprite->Update(deltaTime);
+}
+
+CSimpleSprite* GameObject::GetSprite()
+{
+	return GOSprite;
 }

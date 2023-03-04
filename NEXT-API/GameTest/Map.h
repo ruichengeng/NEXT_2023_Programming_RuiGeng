@@ -13,12 +13,19 @@ public:
 	void Update(float deltaTime);
 	void Render();
 
+	//For Object Pooling
+	//Enemies
+	void CreateEnemyPool(int count);
+	void ReturnEnemy(Enemies* enemy);
 
+	//Wall Blocks
+	void CreateWallBlockPool(int count);
+	//void returnWallBlock(WallBlock* wall);
 
 private:
 	//Background
 	CSimpleSprite* mapBackgroundSprite;
 
-	std::vector<Enemies*> mapEnemies;
+	std::vector<Enemies*> mapEnemyPool;
 	//std::vector<WallBlock*> mapWallBlocks;
 };

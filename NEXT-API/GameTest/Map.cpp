@@ -5,24 +5,31 @@ Map::Map() : Map(0) {}
 
 Map::Map(int id)
 {
-	for (int e = 0; e < 1; e++)
-	{
-		mapEnemies.push_back(new Enemies());
-	}
+	CreateEnemyPool(5);
 }
 
 void Map::Update(float deltaTime)
 {
-	for (int i = 0; i < mapEnemies.size(); i++)
+	for (int i = 0; i < mapEnemyPool.size(); i++)
 	{
-		mapEnemies[i]->Update(deltaTime);
+		mapEnemyPool[i]->Update(deltaTime);
 	}
 }
 
 void Map::Render()
 {
-	for (int i = 0; i < mapEnemies.size(); i++)
+	for (int i = 0; i < mapEnemyPool.size(); i++)
 	{
-		mapEnemies[i]->Render();
+		if (mapEnemyPool[i]->isActive) mapEnemyPool[i]->Render();
+	}
+}
+
+void Map::CreateEnemyPool(int count)
+{
+	mapEnemyPool.clear();
+
+	for (int e = 0; e < count; e++)
+	{
+		mapEnemyPool.push_back(new Enemies());
 	}
 }

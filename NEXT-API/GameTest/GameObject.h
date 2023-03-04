@@ -16,6 +16,10 @@ public:
 	void Move(MovementDirection d);
 	void Render();
 	void Update(float deltaTime);
+	
+	CSimpleSprite* GetSprite();
+
+	bool isActive = true;
 
 private:
 	//Animations
