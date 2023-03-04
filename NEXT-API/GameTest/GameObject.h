@@ -19,15 +19,17 @@ public:
 	void Move(MovementDirection d);
 	void Render();
 	void Update(float deltaTime);
+
+	void DrawColliderCircle();
 	
 	CSimpleSprite* GetSprite();
 
 	bool isActive = true;
+	const float ObjectRadius = 37.5f;
 
 private:
 	//Animations
 	void SetAnimationState(unsigned int state);
-	
 
 	//Variables
 	CSimpleSprite* GOSprite;

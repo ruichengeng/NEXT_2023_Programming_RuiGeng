@@ -36,4 +36,6 @@ public:
 	}
 
 	bool checkIsColliding(GameObject* obj1, GameObject* obj2);
+
+	static bool hasHit(GameObject* obj1, GameObject* obj2);
 };

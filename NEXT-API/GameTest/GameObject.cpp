@@ -49,12 +49,35 @@ void GameObject::Move(MovementDirection d)
 
 void GameObject::Render()
 {
-	if(isActive) GOSprite->Draw();
+	if (isActive)
+	{
+		GOSprite->Draw();
+		DrawColliderCircle();
+	}
 }
 
 void GameObject::Update(float deltaTime)
 {
 	if(isActive) GOSprite->Update(deltaTime);
+}
+
+void GameObject::DrawColliderCircle()
+{
+	//static float d = 0.0f;
+	//d += 0.1f;
+	//
+	//
+	//
+	//float x, y;
+	//GOSprite->GetPosition(x, y);
+	//App::DrawLine(x, y, x, y + 25.0f, 0.0f, 0.0f);
+	//
+	//for (int i = 0; i < PI * 2.0f; i += PI/0.125f)
+	//{
+	//	Vector2 pos_Start = Vector2(25.0f * cosf(i) + x, 25.0f * sinf(i) + y);
+	//	Vector2 pos_End = Vector2(25.0f * cosf(i + PI / 0.125f) + x, 25.0f * sinf(i + PI / 0.125f) + y);
+	//	App::DrawLine(pos_Start.x, pos_Start.y, pos_End.x, pos_End.y, 0.0f, 0.0f, 0.0f);
+	//}
 }
 
 CSimpleSprite* GameObject::GetSprite()

@@ -22,6 +22,9 @@ public:
 	void CreateWallBlockPool(int count);
 	//void returnWallBlock(WallBlock* wall);
 
+	//Getter for the map's enemies
+	std::vector<Enemies*> getMapEnemies();
+
 private:
 	//Background
 	CSimpleSprite* mapBackgroundSprite;

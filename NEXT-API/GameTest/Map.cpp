@@ -39,3 +39,8 @@ void Map::CreateEnemyPool(int count)
 		mapEnemyPool.push_back(new Enemies());
 	}
 }
+
+std::vector<Enemies*> Map::getMapEnemies()
+{
+	return mapEnemyPool;
+}

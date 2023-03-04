@@ -1,4 +1,9 @@
-﻿  GameTest.cpp
+﻿  Bomb.cpp
+  CollisionManager.cpp
+  Enemies.cpp
+  GameObject.cpp
+  GameTest.cpp
+  Map.cpp
   Player.cpp
   Generating Code...
   GameTest.vcxproj -> C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\x64\Debug\GameTest.exe

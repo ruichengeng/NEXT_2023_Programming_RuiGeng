@@ -37,12 +37,30 @@ void Init()
 	gameMap = new Map();
 }
 
+void CollisionChecks()
+{
+	//Check between player and impassable walls
+
+	//Check between player and enemies
+	for (auto enemy : gameMap->getMapEnemies())
+	{
+		if (CollisionManager::instance().hasHit(player, enemy))
+		{
+			player->PlayerDied();
+		}
+	}
+
+	//Check between enemies and bomb explosions
+}
+
 //------------------------------------------------------------------------
 // Update your simulation here. deltaTime is the elapsed time since the last update in ms.
 // This will be called at no greater frequency than the value of APP_MAX_FRAME_RATE
 //------------------------------------------------------------------------
 void Update(float deltaTime)
 {
+	CollisionChecks();
+
 	if ((App::GetController().GetLeftThumbStickX() != 0.0f) || (App::GetController().GetLeftThumbStickY() != 0.0f))
 	{
 		if (App::GetController().GetLeftThumbStickX() > 0.5f)

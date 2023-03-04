@@ -32,6 +32,9 @@ public:
 	void UpdatePlayerElements(float deltaTime); //For player and bombs
 	void RenderPlayerElements();
 
+	//Player dying
+	void PlayerDied();
+
 private:
 	void RenderUIComponents();
 
