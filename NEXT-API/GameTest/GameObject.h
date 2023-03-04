@@ -11,7 +11,7 @@
 class GameObject
 {
 public:
-	GameObject() {}
+	GameObject(float collisionRadius = 32.0f) : ObjectRadius(collisionRadius) {}
 	~GameObject() {}
 
 	void CreateGOSprite(const char* path, int col, int row, float xPos, float yPos, float scale);
@@ -25,7 +25,7 @@ public:
 	CSimpleSprite* GetSprite();
 
 	bool isActive = true;
-	const float ObjectRadius = 37.5f;
+	const float ObjectRadius;
 
 private:
 	//Animations

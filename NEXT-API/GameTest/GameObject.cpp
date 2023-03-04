@@ -28,19 +28,19 @@ void GameObject::Move(MovementDirection d)
 	{
 	case MOVE_DOWN:
 		GOSprite->SetAnimation(ANIM_BACKWARDS);
-		GOSprite->SetPosition(x, y + 1.0f);
+		GOSprite->SetPosition(x, y + 2.0f);
 		break;
 	case MOVE_TOP:
 		GOSprite->SetAnimation(ANIM_FORWARDS);
-		GOSprite->SetPosition(x, y - 1.0f);
+		GOSprite->SetPosition(x, y - 2.0f);
 		break;
 	case MOVE_LEFT:
 		GOSprite->SetAnimation(ANIM_LEFT);
-		GOSprite->SetPosition(x - 1.0f, y);
+		GOSprite->SetPosition(x - 2.0f, y);
 		break;
 	case MOVE_RIGHT:
 		GOSprite->SetAnimation(ANIM_RIGHT);
-		GOSprite->SetPosition(x + 1.0f, y);
+		GOSprite->SetPosition(x + 2.0f, y);
 		break;
 	default:
 		break;
@@ -63,6 +63,10 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::DrawColliderCircle()
 {
+	float x, y;
+	GOSprite->GetPosition(x, y);
+
+	App::DrawLine(x, y, x + ObjectRadius, y, 0.0f, 1.0f, 0.0f);
 	//static float d = 0.0f;
 	//d += 0.1f;
 	//

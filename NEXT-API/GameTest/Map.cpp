@@ -7,9 +7,9 @@ Map::Map(int id)
 {
 	mapBackgroundSprite = App::CreateSprite(".\\Art\\blankBackground.bmp", 1, 1);
 	mapBackgroundSprite->SetPosition(512.0f, 512.0f);
-	mapBackgroundSprite->SetScale(1.5f);
+	mapBackgroundSprite->SetScale(1.0f);
 	CreateEnemyPool(5);
-	CreateGrid(32, 32);
+	CreateGrid(16, 16);
 }
 
 void Map::Update(float deltaTime)
@@ -62,9 +62,14 @@ void Map::CreateEnemyPool(int count)
 	}
 }
 
-std::vector<Enemies*> Map::getMapEnemies()
+std::vector<Enemies*> Map::GetMapEnemies()
 {
 	return mapEnemyPool;
+}
+
+std::vector<WallBlock*> Map::GetMapWalls()
+{
+	return mapWallBlocks;
 }
 
 void Map::CreateGrid(int x, int y)
@@ -78,6 +83,8 @@ void Map::CreateGrid(int x, int y)
 
 	//Border
 	std::vector<Vector2> borderPoints;
+	//Even grid points
+	std::vector<Vector2> evenGridPoints;
 
 	//Creates the intersection points
 	for (int i = 0; i <= x; i++)
@@ -90,6 +97,14 @@ void Map::CreateGrid(int x, int y)
 			if (((i == x)||(i == 0)) || ((j == y) ||(j == 0)))
 			{
 				borderPoints.push_back(Vector2(i * dx, j * dy));
+			}
+
+			if (i > 1 && j > 1)
+			{
+				if (i % 2 == 0 && j % 2 == 0)
+				{
+					evenGridPoints.push_back(Vector2(i * dx, j * dy));
+				}
 			}
 		}
 	}
@@ -108,6 +123,13 @@ void Map::CreateGrid(int x, int y)
 		mapWallBlocks.push_back(newWallBlock);
 	}
 
+	for (auto eP : evenGridPoints)
+	{
+		WallBlock* newWallBlock = new WallBlock(eP, Vector2(x, y), 0);
+		mapWallBlocks.push_back(newWallBlock);
+	}
+
+	
 	//Finding the border first
 
 	//for (auto border : mapGridIntersections)

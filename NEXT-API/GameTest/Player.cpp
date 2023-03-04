@@ -1,12 +1,13 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "WallBlock.h"
 
 Player::Player():Player(0) {}
 
-Player::Player(int id):GameObject()
+Player::Player(int id):GameObject(24.0f)
 {
 	//For character selection, the id can be added to the end of the name. I.e: Player0, Player1, etc
-	CreateGOSprite(".\\Art\\NeoEarlyBomberman.bmp", 7, 4, 400.0f, 400.0f, 2.0f);
+	CreateGOSprite(".\\Art\\NeoEarlyBomberman.bmp", 7, 4, 430.0f, 512.0f, 1.0f);
 	CreateGOAnimation(ANIM_BACKWARDS, 1.0f / 15.0f, { 0,1,2,3,4,5,6 });
 	CreateGOAnimation(ANIM_RIGHT, 1.0f / 15.0f, { 7,8,9,10,11,12,13 });
 	CreateGOAnimation(ANIM_FORWARDS, 1.0f / 15.0f, { 14,15,16,17,18,19,20 });
@@ -80,6 +81,24 @@ void Player::RenderPlayerElements()
 	}
 
 	RenderUIComponents();
+}
+
+void Player::PlayerTouchedWall(WallBlock* wall)
+{
+	float wallX, wallY;
+	wall->GetSprite()->GetPosition(wallX, wallY);
+
+	float x, y;
+	GetSprite()->GetPosition(x, y);
+
+	if (abs(x - wallX) < abs(y - wallY))
+	{
+		GetSprite()->SetPosition(x, wallY + (wall->ObjectRadius + ObjectRadius)*((abs(y - wallY))/(y-wallY)));
+	}
+	else
+	{
+		GetSprite()->SetPosition(wallX + (wall->ObjectRadius + ObjectRadius)*((abs(x - wallX)) / (x - wallX)), y);
+	}
 }
 
 void Player::PlayerDied()

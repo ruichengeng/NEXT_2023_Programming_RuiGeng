@@ -16,6 +16,8 @@ public:
 	float timeElapsed = 0.0f;
 };
 
+class WallBlock;
+
 //Player class, responsible for the character selection and behaviours
 class Player : public GameObject
 {
@@ -31,6 +33,9 @@ public:
 	//void ReturnBomb(Bomb* b);
 	void UpdatePlayerElements(float deltaTime); //For player and bombs
 	void RenderPlayerElements();
+
+	//Wall Contact
+	void PlayerTouchedWall(WallBlock* wall);
 
 	//Player dying
 	void PlayerDied();

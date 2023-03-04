@@ -6,7 +6,7 @@ Enemies::Enemies():Enemies(0){}
 
 Enemies::Enemies(int id): GameObject(), enemyID(id)
 {
-	CreateGOSprite(".\\Art\\Enemies.bmp", 13, 4, 200.0f, 200.0f, 3.0f);
+	CreateGOSprite(".\\Art\\Enemies.bmp", 13, 4, 200.0f, 200.0f, 1.0f);
 
 	//Currently there are 4 different enemies
 	//Within each of the switch's cases, a unique feature about that type of enemy can be added (expansions)

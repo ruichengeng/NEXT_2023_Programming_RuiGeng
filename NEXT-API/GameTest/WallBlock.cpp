@@ -24,13 +24,13 @@ void WallBlock::CreateWall(Vector2 pos)
 	switch (BlockType)
 	{
 	case INDESTRUCTIBLE:
-		CreateGOSprite(".\\Art\\wall_unbreakable.bmp", 1, 1, pos.x, pos.y, 2.0f);
+		CreateGOSprite(".\\Art\\wall_unbreakable.bmp", 1, 1, pos.x, pos.y, 1.0f);
 		break;
 	case DESTRUCTIBLE:
-		CreateGOSprite(".\\Art\\wall_breakable.bmp", 1, 1, pos.x, pos.y, 2.0f);
+		CreateGOSprite(".\\Art\\wall_breakable.bmp", 1, 1, pos.x, pos.y, 1.0f);
 		break;
 	case DESTRUCTIBLE_LOOT:
-		CreateGOSprite(".\\Art\\crate_loot.bmp", 1, 1, pos.x, pos.y, 2.0f);
+		CreateGOSprite(".\\Art\\crate_loot.bmp", 1, 1, pos.x, pos.y, 1.0f);
 		break;
 	default:
 		return; //Don't create a wall if it's an unknown type
