@@ -25,10 +25,16 @@ public:
 	//Getter for the map's enemies
 	std::vector<Enemies*> getMapEnemies();
 
+	//Grid System
+	void CreateGrid(int x, int y);
+
 private:
 	//Background
 	CSimpleSprite* mapBackgroundSprite;
 
 	std::vector<Enemies*> mapEnemyPool;
 	//std::vector<WallBlock*> mapWallBlocks;
+
+	//Grid
+	std::vector<Vector2> mapGridIntersections;
 };
