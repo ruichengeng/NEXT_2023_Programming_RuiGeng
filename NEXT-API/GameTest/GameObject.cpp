@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "app\app.h"
 #include "GameObject.h"
 
 void GameObject::CreateGOSprite(const char* path, int col, int row, float xPos, float yPos, float scale)

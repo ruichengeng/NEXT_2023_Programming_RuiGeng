@@ -26,7 +26,7 @@ void Bomb::UpdateBombState(float deltaTime)
 	else
 	{
 		triggerTimer = 0.0f;
-		Explode();
+		//Explode();
 	}
 	Update(deltaTime);
 }

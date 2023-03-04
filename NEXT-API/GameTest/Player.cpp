@@ -52,3 +52,13 @@ void Player::UpdatePlayerElements(float deltaTime)
 		if (bombPool[i]->isActive) bombPool[i]->UpdateBombState(deltaTime);
 	}
 }
+
+void Player::RenderPlayerElements()
+{
+	Render();
+
+	for (int i = 0; i < bombPool.size(); i++)
+	{
+		if (bombPool[i]->isActive) bombPool[i]->Render();
+	}
+}

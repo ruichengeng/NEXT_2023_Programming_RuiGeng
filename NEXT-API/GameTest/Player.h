@@ -16,6 +16,7 @@ public:
 	void CreateBombPool(int count);
 	//void ReturnBomb(Bomb* b);
 	void UpdatePlayerElements(float deltaTime); //For player and bombs
+	void RenderPlayerElements();
 
 private:
 	std::vector<Bomb*> bombPool;
