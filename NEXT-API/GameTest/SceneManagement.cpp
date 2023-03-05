@@ -304,7 +304,27 @@ void SceneManagement::CollisionChecks()
 		{
 			if (CollisionManager::instance().hasHitAABB(player, wall))
 			{
-				player->PlayerTouchedWall(wall);
+				if (wall->BlockType == TELEPORT)
+				{
+					bool mapFound = false;
+
+					for (auto map : loadedMaps)
+					{
+						if (map->Map_Type != activeType)
+						{
+							//LoadLevel(map->Map_Type, {});
+							mapFound = true;
+							LoadLevel(map->Map_Type, new std::vector<std::string>());
+						}
+					}
+
+					if (!mapFound) LoadLevel(MAP_2, new std::vector<std::string>());
+					//For future improvements, use teleport class that will include a link to the connected place
+				}
+				else
+				{
+					player->PlayerTouchedWall(wall);
+				}
 			}
 		}
 

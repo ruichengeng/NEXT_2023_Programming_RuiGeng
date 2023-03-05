@@ -32,6 +32,10 @@ void WallBlock::CreateWall(Vector2 pos)
 	case DESTRUCTIBLE_LOOT:
 		CreateGOSprite(".\\Art\\crate_loot.bmp", 1, 1, pos.x, pos.y, 1.0f);
 		break;
+	case TELEPORT:
+		CreateGOSprite(".\\Art\\teleport_effect.bmp", 18, 1, pos.x, pos.y, 1.0f);
+		CreateGOAnimation(ANIM_TELEPORT, 1.0f / 10.0f, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17});
+		break;
 	default:
 		return; //Don't create a wall if it's an unknown type
 	}

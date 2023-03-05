@@ -21,7 +21,8 @@ enum WallBlockType
 {
 	INDESTRUCTIBLE,
 	DESTRUCTIBLE,
-	DESTRUCTIBLE_LOOT
+	DESTRUCTIBLE_LOOT,
+	TELEPORT
 };
 
 enum AnimationType
@@ -34,7 +35,10 @@ enum AnimationType
 
 	//For Explosion
 	ANIM_BOMB,
-	ANIM_BOMB_EXPLOSION
+	ANIM_BOMB_EXPLOSION,
+
+	//For Teleporter/Portal
+	ANIM_TELEPORT
 
 	//For Enemies
 };

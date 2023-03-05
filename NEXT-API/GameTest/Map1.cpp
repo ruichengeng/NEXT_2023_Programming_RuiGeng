@@ -27,6 +27,7 @@ void Map1::CreateWallBlockPool(int count)
 void Map1::CreateGrid(int x, int y)
 {
 	mapGridIntersections.clear();
+	mapWallBlocks.clear();
 
 	//Distance between the adjascent point
 	float dx = APP_VIRTUAL_WIDTH / x;
@@ -65,6 +66,14 @@ void Map1::CreateGrid(int x, int y)
 				}
 			}
 
+			if (i == 3 && j == 3)
+			{
+				WallBlock* newWallBlock = new WallBlock(Vector2(i * dx, j * dy), Vector2(x, y), 3);
+				mapWallBlocks.push_back(newWallBlock);
+
+				gridOccupiedByBlock = true;
+			}
+
 			if (!gridOccupiedByBlock) emptyGridPoints.push_back(new Vector2(i * dx, j * dy));
 		}
 	}
@@ -75,7 +84,6 @@ void Map1::CreateGrid(int x, int y)
 	//TESTING
 	//jkladsfhljkdshfkajsdhfjklahsdfjkhasdklf
 
-	mapWallBlocks.clear();
 
 	for (auto border : borderPoints)
 	{

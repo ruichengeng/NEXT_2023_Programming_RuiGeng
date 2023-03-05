@@ -6,7 +6,7 @@ class WallBlock : public GameObject
 public:
 	WallBlock();
 	//For different wall types
-	// ID: 0 -- Unbreakable wall; 1 -- Breakable wall; 2 -- Breakable wall with loots
+	// ID: 0 -- Unbreakable wall; 1 -- Breakable wall; 2 -- Breakable wall with loots; 3 - Teleporter
 	WallBlock(Vector2 pos, Vector2 maxVec, int id = 0);
 	~WallBlock() {}
 

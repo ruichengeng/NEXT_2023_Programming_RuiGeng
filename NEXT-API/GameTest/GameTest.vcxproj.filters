@@ -1,35 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="App\app.cpp" />
-    <ClCompile Include="App\main.cpp" />
-    <ClCompile Include="App\SimpleController.cpp" />
-    <ClCompile Include="App\SimpleSound.cpp" />
-    <ClCompile Include="App\SimpleSprite.cpp" />
-    <ClCompile Include="App\TextureLoader.cpp" />
-    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="GameTest.cpp">
-      <Filter>Challenge Entry</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>Challenge Entry</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Challenge Entry</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemies.cpp">
-      <Filter>Challenge Entry</Filter>
-    </ClCompile>
-    <ClCompile Include="Bomb.cpp">
       <Filter>Challenge Entry</Filter>
     </ClCompile>
     <ClCompile Include="WallBlock.cpp">
       <Filter>Challenge Entry</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Challenge Entry</Filter>
-    </ClCompile>
-    <ClCompile Include="AI.cpp">
       <Filter>Challenge Entry</Filter>
     </ClCompile>
     <ClCompile Include="SceneManagement.cpp">
@@ -47,39 +25,48 @@
     <ClCompile Include="Map1.cpp">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>Challenge Entry\Enemy and AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemies.cpp">
+      <Filter>Challenge Entry\Enemy and AI</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Challenge Entry\Managers and Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>Challenge Entry\Player Related</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Challenge Entry\Player Related</Filter>
+    </ClCompile>
+    <ClCompile Include="App\app.cpp">
+      <Filter>API Provided</Filter>
+    </ClCompile>
+    <ClCompile Include="App\main.cpp">
+      <Filter>API Provided</Filter>
+    </ClCompile>
+    <ClCompile Include="App\SimpleController.cpp">
+      <Filter>API Provided</Filter>
+    </ClCompile>
+    <ClCompile Include="App\SimpleSound.cpp">
+      <Filter>API Provided</Filter>
+    </ClCompile>
+    <ClCompile Include="App\SimpleSprite.cpp">
+      <Filter>API Provided</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>API Provided</Filter>
+    </ClCompile>
+    <ClCompile Include="App\TextureLoader.cpp">
+      <Filter>API Provided</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="App\app.h" />
-    <ClInclude Include="App\AppSettings.h" />
-    <ClInclude Include="App\main.h" />
-    <ClInclude Include="App\SimpleController.h" />
-    <ClInclude Include="App\SimpleSound.h" />
-    <ClInclude Include="App\SimpleSprite.h" />
-    <ClInclude Include="App\TextureLoader.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="CollisionManager.h">
-      <Filter>Challenge Entry</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Challenge Entry</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemies.h">
-      <Filter>Challenge Entry</Filter>
-    </ClInclude>
-    <ClInclude Include="Bomb.h">
-      <Filter>Challenge Entry</Filter>
-    </ClInclude>
     <ClInclude Include="WallBlock.h">
       <Filter>Challenge Entry</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Challenge Entry</Filter>
-    </ClInclude>
-    <ClInclude Include="AI.h">
-      <Filter>Challenge Entry</Filter>
-    </ClInclude>
-    <ClInclude Include="EnumAndHelper.h">
       <Filter>Challenge Entry</Filter>
     </ClInclude>
     <ClInclude Include="SceneManagement.h">
@@ -97,9 +84,51 @@
     <ClInclude Include="Map1.h">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClInclude Include="AI.h">
+      <Filter>Challenge Entry\Enemy and AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemies.h">
+      <Filter>Challenge Entry\Enemy and AI</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Challenge Entry\Managers and Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumAndHelper.h">
+      <Filter>Challenge Entry\Managers and Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>Challenge Entry\Player Related</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Challenge Entry\Player Related</Filter>
+    </ClInclude>
+    <ClInclude Include="App\app.h">
+      <Filter>API Provided</Filter>
+    </ClInclude>
+    <ClInclude Include="App\AppSettings.h">
+      <Filter>API Provided</Filter>
+    </ClInclude>
+    <ClInclude Include="App\main.h">
+      <Filter>API Provided</Filter>
+    </ClInclude>
+    <ClInclude Include="App\SimpleController.h">
+      <Filter>API Provided</Filter>
+    </ClInclude>
+    <ClInclude Include="App\SimpleSound.h">
+      <Filter>API Provided</Filter>
+    </ClInclude>
+    <ClInclude Include="App\SimpleSprite.h">
+      <Filter>API Provided</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>API Provided</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>API Provided</Filter>
+    </ClInclude>
+    <ClInclude Include="App\TextureLoader.h">
+      <Filter>API Provided</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Challenge Entry">
@@ -108,5 +137,22 @@
     <Filter Include="Challenge Entry\Scene and Maps">
       <UniqueIdentifier>{e4b4624c-b191-42fa-8e29-704d5e9dac10}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Challenge Entry\Enemy and AI">
+      <UniqueIdentifier>{4828e17a-976b-4081-a270-a67949c89405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Challenge Entry\Managers and Helpers">
+      <UniqueIdentifier>{e525b897-8d67-42b6-946e-54a75f2f058d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Challenge Entry\Player Related">
+      <UniqueIdentifier>{8c65fb19-bdba-420a-b438-38e26b7b26d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Provided">
+      <UniqueIdentifier>{52cba162-0299-4923-927d-25a2bdc37e60}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>API Provided</Filter>
+    </Text>
   </ItemGroup>
 </Project>
