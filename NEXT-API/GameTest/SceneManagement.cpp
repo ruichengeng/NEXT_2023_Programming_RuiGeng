@@ -308,13 +308,14 @@ void SceneManagement::CollisionChecks()
 				{
 					bool mapFound = false;
 
-					for (auto map : loadedMaps)
+					for (int m = 0; m < loadedMaps.size(); m++)
 					{
-						if (map->Map_Type != activeType)
+						if (loadedMaps[m]->Map_Type != activeType)
 						{
 							//LoadLevel(map->Map_Type, {});
 							mapFound = true;
-							LoadLevel(map->Map_Type, new std::vector<std::string>());
+							LoadLevel(loadedMaps[m]->Map_Type, new std::vector<std::string>());
+							m += loadedMaps.size();
 						}
 					}
 

@@ -1,12 +1,12 @@
 ﻿  SmallMap.cpp
 C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\AI.h(7,14): warning C4099: 'Vector2': type name first seen using 'struct' now seen using 'class'
 C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\EnumAndHelper.h(60,8): message : see declaration of 'Vector2'
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(62,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(62,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(82,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(82,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(88,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(88,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(63,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(63,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(81,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(81,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(87,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SmallMap.cpp(87,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   GameTest.vcxproj -> C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\x64\Debug\GameTest.exe
   C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\\GameTest\glut\bin\x64\freeglut.dll
   1 File(s) copied

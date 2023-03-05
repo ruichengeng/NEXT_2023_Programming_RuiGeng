@@ -16,6 +16,7 @@ void SmallMap::CreateWallBlockPool(int count)
 void SmallMap::CreateGrid(int x, int y)
 {
 	mapGridIntersections.clear();
+	mapWallBlocks.clear();
 
 	//Distance between the adjascent point
 	float dx = APP_VIRTUAL_WIDTH / (x * 2.0f);
@@ -57,7 +58,7 @@ void SmallMap::CreateGrid(int x, int y)
 				}
 			}
 
-			if (i == 2 && j == 3)
+			if (i == 3 && j == 7)
 			{
 				WallBlock* newWallBlock = new WallBlock(Vector2(i * dx + qx, j * dy + qy), Vector2(x, y), 3);
 				mapWallBlocks.push_back(newWallBlock);
@@ -74,8 +75,6 @@ void SmallMap::CreateGrid(int x, int y)
 
 	//TESTING
 	//jkladsfhljkdshfkajsdhfjklahsdfjkhasdklf
-
-	mapWallBlocks.clear();
 
 	for (auto border : borderPoints)
 	{
