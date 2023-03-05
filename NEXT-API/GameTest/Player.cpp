@@ -170,7 +170,7 @@ Vector2 Player::FindBombLocation()
 	{
 		for (auto pos : potentialBombSpawnPos)
 		{
-			if (CollisionManager::instance().hasHitAABB(Vector2(playerX, playerY), Vector2(pos->x, pos->y), 30.0f, 30.0f))
+			if (CollisionManager::instance().hasHitAABB(Vector2(playerX + 16.0f, playerY + 32.0f), Vector2(pos->x, pos->y), 30.0f, 30.0f))
 			{
 				//Check if there is a bomb there already
 

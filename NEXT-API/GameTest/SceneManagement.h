@@ -34,6 +34,6 @@ private:
 	//int gameProgress = -1;
 
 	//Input Delays
-	float inputDelay = 0.5f;
+	float inputDelay = 0.25f;
 	float currentDelay = 0.0f;
 };
