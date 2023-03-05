@@ -7,7 +7,7 @@ Bomb::Bomb() : Bomb(0)
 
 Bomb::Bomb(int id) : GameObject()
 {
-	CreateGOSprite(".\\Art\\bomb.bmp", 6, 1, 500.0f, 500.0f, 1.5f);
+	CreateGOSprite(".\\Art\\bomb.bmp", 6, 1, 500.0f, 500.0f, 1.0f);
 	CreateGOAnimation(ANIM_BOMB, 1.0f / 25.0f, { 0,1,2,3,4,5 });
 }
 

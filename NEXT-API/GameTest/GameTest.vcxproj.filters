@@ -41,6 +41,9 @@
     <ClCompile Include="SmallMap.cpp">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\app.h" />
@@ -83,6 +86,9 @@
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClInclude>
     <ClInclude Include="SmallMap.h">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,7 @@
 enum SCENE_LEVEL_TYPE
 {
 	INTRO,
+	PAUSE,
 	MAP_1,
 	MAP_2,
 	END

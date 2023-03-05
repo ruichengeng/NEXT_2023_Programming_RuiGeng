@@ -1,7 +1,4 @@
-﻿  SceneManagement.cpp
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\AI.h(7,14): warning C4099: 'Vector2': type name first seen using 'struct' now seen using 'class'
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\EnumAndHelper.h(55,8): message : see declaration of 'Vector2'
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(23,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+﻿  Bomb.cpp
   GameTest.vcxproj -> C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\x64\Debug\GameTest.exe
   C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\\GameTest\glut\bin\x64\freeglut.dll
   1 File(s) copied

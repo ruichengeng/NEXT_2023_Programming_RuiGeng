@@ -1,6 +1,7 @@
 #pragma once
 #include "Map.h"
 #include "Player.h"
+#include "Scene.h"
 
 
 //SceneManagement takes care of the levels and maps within them
@@ -23,7 +24,9 @@ private:
 
 private:
 	Player* player;
-	std::vector<Map*> loadedMaps;
+	std::vector<Scene*> loadedScenes;//Game Scenes (initial, pause, end)
+	std::vector<Map*> loadedMaps;//Game Map Levels
 
-	int activeLevel = -1;
+	Vector2 activeLevel = Vector2(-1, -1);
+	SCENE_LEVEL_TYPE activeType;
 };
