@@ -3,7 +3,7 @@
 
 Map1::Map1():MapBase(MAP_1)
 {
-	mapBackgroundSprite = App::CreateSprite(".\\Art\\blankBackground.bmp", 1, 1);
+	mapBackgroundSprite = App::CreateSprite(".\\Art\\background_grass.bmp", 1, 1);
 	mapBackgroundSprite->SetPosition(512.0f, 512.0f);
 	mapBackgroundSprite->SetScale(1.0f);
 

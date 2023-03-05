@@ -67,7 +67,37 @@ void GameObject::DrawColliderCircle()
 	float x, y;
 	GOSprite->GetPosition(x, y);
 
-	App::DrawLine(x, y, x + ObjectRadius, y, 0.0f, 1.0f, 0.0f);
+
+	//Calculate circle points
+	std::vector<Vector2> circlePoints = std::vector<Vector2>();
+
+	for (int angle = 0; angle < PI * 2.0f; angle += PI / 0.125f)
+	{
+
+	}
+
+	float theta = 0.0f;
+	for (int i = 0; i < 10; ++i)
+	{
+		circlePoints.push_back(Vector2(x + ObjectRadius * cos(theta), y + ObjectRadius * sin(theta)));
+		theta += 2 * PI / 10;
+	}
+
+	for (int p = 0; p < circlePoints.size() - 1; p++)
+	{
+		App::DrawLine(circlePoints[p].x, circlePoints[p].y, circlePoints[p + 1].x, circlePoints[p + 1].y, 1.0f, 0.0f, 0.0f);
+	}
+
+	//for (int i = 0; i < PI * 2.0f; i += PI/0.125f)
+	//{
+	//	Vector2 pos_Start = Vector2(25.0f * cosf(i) + x, 25.0f * sinf(i) + y);
+	//	Vector2 pos_End = Vector2(25.0f * cosf(i + PI / 0.125f) + x, 25.0f * sinf(i + PI / 0.125f) + y);
+	//	App::DrawLine(pos_Start.x, pos_Start.y, pos_End.x, pos_End.y, 0.0f, 0.0f, 0.0f);
+	//}
+
+
+
+	App::DrawLine(x, y, x + ObjectRadius, y, 1.0f, 0.0f, 0.0f);
 	//static float d = 0.0f;
 	//d += 0.1f;
 	//

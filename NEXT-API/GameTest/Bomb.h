@@ -16,5 +16,8 @@ public:
 	bool Exploded = false;
 
 private:
+	void createBombArms(int x, int y);
+
+private:
 	float triggerTimer = 5.0f;
 };

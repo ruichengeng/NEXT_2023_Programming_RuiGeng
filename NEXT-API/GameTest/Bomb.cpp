@@ -53,3 +53,7 @@ void Bomb::Explode()
 	//isActive = false;
 	triggerTimer = 3.0f;
 }
+
+void Bomb::createBombArms(int x, int y)
+{
+}

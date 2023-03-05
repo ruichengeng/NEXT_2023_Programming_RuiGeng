@@ -3,7 +3,7 @@
 
 SmallMap::SmallMap() : MapBase(MAP_2)
 {
-	mapBackgroundSprite = App::CreateSprite(".\\Art\\blankBackground.bmp", 1, 1);
+	mapBackgroundSprite = App::CreateSprite(".\\Art\\background_dirt.bmp", 1, 1);
 	mapBackgroundSprite->SetPosition(512.0f, 512.0f);
 	mapBackgroundSprite->SetScale(1.0f);
 	CreateGrid(8, 8);
