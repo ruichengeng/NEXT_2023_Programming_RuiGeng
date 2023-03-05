@@ -26,14 +26,20 @@
     <ClCompile Include="WallBlock.cpp">
       <Filter>Challenge Entry</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Challenge Entry</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Challenge Entry</Filter>
     </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>Challenge Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManagement.cpp">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallMap.cpp">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,9 +67,6 @@
     <ClInclude Include="WallBlock.h">
       <Filter>Challenge Entry</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Challenge Entry</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Challenge Entry</Filter>
     </ClInclude>
@@ -73,6 +76,15 @@
     <ClInclude Include="EnumAndHelper.h">
       <Filter>Challenge Entry</Filter>
     </ClInclude>
+    <ClInclude Include="SceneManagement.h">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallMap.h">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -80,6 +92,9 @@
   <ItemGroup>
     <Filter Include="Challenge Entry">
       <UniqueIdentifier>{df66b95f-f42c-49ea-a8b9-94627f450dd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Challenge Entry\Scene and Maps">
+      <UniqueIdentifier>{e4b4624c-b191-42fa-8e29-704d5e9dac10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
