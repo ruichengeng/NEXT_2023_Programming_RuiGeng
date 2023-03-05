@@ -43,4 +43,5 @@ public:
 
 	//Grid
 	std::vector<Vector2> mapGridIntersections;
+	std::vector<Vector2*> emptyGridPoints;
 };

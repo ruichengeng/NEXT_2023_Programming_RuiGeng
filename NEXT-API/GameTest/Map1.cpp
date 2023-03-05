@@ -39,7 +39,7 @@ void Map1::CreateGrid(int x, int y)
 	//Even grid points
 	std::vector<Vector2*> evenGridPoints;
 	//Empty grid points for the ai behaviours
-	std::vector<Vector2*> emptyGridPoints;
+	emptyGridPoints.clear();
 
 	//Creates the intersection points
 	for (int i = 0; i <= x; i++)

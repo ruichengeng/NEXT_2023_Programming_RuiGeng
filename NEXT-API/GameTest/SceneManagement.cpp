@@ -3,7 +3,7 @@
 
 SceneManagement::SceneManagement()
 {
-	player = new Player(0);
+	player = new Player(0, std::vector<Vector2*>());
 	LoadLevel(INTRO, new std::vector<std::string>());
 	//LoadLevel(MAP_1);
 }
@@ -49,6 +49,7 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* m
 				//Opens a map
 				
 				activeLevel = Vector2(1, m);
+				player->SetBombSpawnablePos(loadedMaps[m]->emptyGridPoints);
 				return;
 			}
 		}
@@ -63,6 +64,8 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* m
 		{
 			loadedMaps.push_back(new SmallMap());
 		}
+
+		player->SetBombSpawnablePos(loadedMaps[loadedMaps.size()-1]->emptyGridPoints);
 
 
 		//For future expansion of implementing N number of map levels

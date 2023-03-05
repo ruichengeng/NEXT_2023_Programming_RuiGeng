@@ -31,3 +31,11 @@ bool CollisionManager::hasHitAABB(GameObject* obj1, GameObject* obj2)
 
     return true;
 }
+
+bool CollisionManager::hasHitAABB(Vector2 vec1, Vector2 vec2, float dx, float dy)
+{
+    if (abs(vec1.x - vec2.x) > (2.0f * dx)) return false;
+    if (abs(vec1.y - vec2.y) > (2.0f * dy)) return false;
+
+    return true;
+}

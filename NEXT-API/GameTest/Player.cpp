@@ -3,9 +3,9 @@
 #include "WallBlock.h"
 #include "SceneManagement.h"
 
-Player::Player():Player(0) {}
+Player::Player():Player(0, std::vector<Vector2*>()) {}
 
-Player::Player(int id):GameObject(24.0f)
+Player::Player(int id, std::vector<Vector2*> ai_path):GameObject(24.0f), potentialBombSpawnPos(ai_path)
 {
 	//For character selection, the id can be added to the end of the name. I.e: Player0, Player1, etc
 	CreateGOSprite(".\\Art\\NeoEarlyBomberman.bmp", 7, 4, 430.0f, 512.0f, 1.0f);
@@ -20,7 +20,7 @@ Player::Player(int id):GameObject(24.0f)
 
 void Player::PlaceBomb(int bombType)
 {
-	if (currentSpawnCoolDown == 0.0f)
+	if ((currentSpawnCoolDown == 0.0f) && (playerStatistics.BombCount > 0))
 	{
 		float x, y;
 		GetSprite()->GetPosition(x, y);
@@ -29,8 +29,15 @@ void Player::PlaceBomb(int bombType)
 		{
 			if (!bombPool[a]->Exploded && !bombPool[a]->isActive)
 			{
-				bombPool[a]->SetBomb(x, y);
-				currentSpawnCoolDown = bombSpawnCoolDown;
+				Vector2 spawnPos = FindBombLocation();
+
+				if (spawnPos.x != -1 && spawnPos.y != -1)
+				{
+					bombPool[a]->SetBomb(spawnPos.x, spawnPos.y);
+					//bombPool[a]->SetBomb(x, y);
+					currentSpawnCoolDown = bombSpawnCoolDown;
+					playerStatistics.BombCount--;
+				}
 				return;
 			}
 		}
@@ -80,6 +87,11 @@ void Player::RenderPlayerElements()
 	}
 
 	RenderUIComponents();
+}
+
+void Player::SetBombSpawnablePos(std::vector<Vector2*> pos)
+{
+	potentialBombSpawnPos = pos;
 }
 
 void Player::PlayerTouchedWall(WallBlock* wall)
@@ -142,4 +154,44 @@ void Player::RenderUIComponents()
 	App::Print(512, 550, enemy.c_str(), 0.0f, 0.0f, 0.0f);
 	App::Print(512, 500, xp.c_str(), 0.0f, 0.0f, 0.0f);
 	App::Print(512, 450, time.c_str(), 0.0f, 0.0f, 0.0f);
+}
+
+Vector2 Player::FindBombLocation()
+{
+	float playerX, playerY;
+	GetSprite()->GetPosition(playerX, playerY);
+
+	if (potentialBombSpawnPos.size() == 0)
+	{
+		return Vector2(-1, -1);
+		//return Vector2(playerX, playerY);
+	}
+	else
+	{
+		for (auto pos : potentialBombSpawnPos)
+		{
+			if (CollisionManager::instance().hasHitAABB(Vector2(playerX, playerY), Vector2(pos->x, pos->y), 30.0f, 30.0f))
+			{
+				//Check if there is a bomb there already
+
+				for (auto bomb : bombPool)
+				{
+					float tempX, tempY;
+					bomb->GetSprite()->GetPosition(tempX, tempY);
+
+					if (bomb->isActive)
+					{
+						if (CollisionManager::instance().hasHitAABB(Vector2(tempX, tempY), Vector2(pos->x, pos->y), 2.0f, 2.0f))
+						{
+							return Vector2(-1, -1);
+						}
+					}
+				}
+
+				return Vector2(pos->x, pos->y);
+			}
+		}
+
+		return Vector2(-1, -1);
+	}
 }

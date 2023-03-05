@@ -24,4 +24,5 @@ public:
 	static bool hasHit(GameObject* obj1, GameObject* obj2);
 	//AABB Check
 	static bool hasHitAABB(GameObject* obj1, GameObject* obj2);
+	static bool hasHitAABB(Vector2 vec1, Vector2 vec2, float dx, float dy);
 };
