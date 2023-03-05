@@ -66,7 +66,7 @@ void Map1::CreateGrid(int x, int y)
 				}
 			}
 
-			if (i == 3 && j == 3)
+			if (i == 11 && j == 5)
 			{
 				WallBlock* newWallBlock = new WallBlock(Vector2(i * dx, j * dy), Vector2(x, y), 3);
 				mapWallBlocks.push_back(newWallBlock);

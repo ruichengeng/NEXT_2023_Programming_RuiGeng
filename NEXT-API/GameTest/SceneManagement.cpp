@@ -10,6 +10,17 @@ SceneManagement::SceneManagement()
 
 void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* msgs)
 {
+	if (activeType == INTRO || activeType == END)
+	{
+		//Resets the player stats and maps after coming from the end screen
+
+		for (auto map : loadedMaps)
+		{
+			map->ResetMap();
+		}
+		player->ResetPlayer();
+	}
+
 	activeType = id;
 	currentDelay = inputDelay;
 
@@ -31,14 +42,12 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* m
 	}
 	else
 	{
-		player->ResetPlayer();
-
 		for (int m = 0; m < loadedMaps.size(); m++)
 		{
 			if (loadedMaps[m]->Map_Type == (SCENE_LEVEL_TYPE)id)
 			{
 				//Opens a map
-				loadedMaps[m]->ResetMap();
+				
 				activeLevel = Vector2(1, m);
 				return;
 			}
@@ -121,10 +130,10 @@ void SceneManagement::UpdateInput(float deltaTime)
 	//	}
 	//}
 
-	for (auto m : loadedMaps)
-	{
-		m->Update((m->Map_Type == activeType) ? deltaTime : 0.0f);
-	}
+	//for (auto m : loadedMaps)
+	//{
+	//	m->Update((m->Map_Type == activeType) ? deltaTime : 0.0f);
+	//}
 
 	//Game Controls
 	if (activeType == INTRO) //Intro screen controls
