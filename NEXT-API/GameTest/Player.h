@@ -44,10 +44,14 @@ public:
 	PlayerStat GetPlayerStatistics();
 	bool isOutOfLife = false;
 
+	//Reset Player
+	void ResetPlayer();
+
 private:
 	void RenderUIComponents();
 
 private:
+	Vector2 initialPos;
 	std::vector<Bomb*> bombPool;
 	PlayerStat playerStatistics;
 	float bombSpawnCoolDown = 0.5f;

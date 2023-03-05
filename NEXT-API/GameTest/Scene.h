@@ -14,6 +14,7 @@ public:
 
 	void SetRenderText(std::string text);
 	void Render();
+	void SetSceneString(std::vector<std::string>* msgs);
 
 	SCENE_LEVEL_TYPE Scene_Type;
 

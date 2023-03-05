@@ -27,6 +27,9 @@ public:
 	bool isActive = true;
 	const float ObjectRadius;
 
+	//Reset
+	void ResetGameObject();
+
 private:
 	//Animations
 	void SetAnimationState(unsigned int state);
@@ -34,4 +37,5 @@ private:
 	//Variables
 	CSimpleSprite* GOSprite;
 	Vector2 SpriteHalfSize; //For collision checks
+	Vector2 initialPosition;
 };

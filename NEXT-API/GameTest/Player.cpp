@@ -14,10 +14,8 @@ Player::Player(int id):GameObject(24.0f)
 	CreateGOAnimation(ANIM_FORWARDS, 1.0f / 15.0f, { 14,15,16,17,18,19,20 });
 	CreateGOAnimation(ANIM_LEFT, 1.0f / 15.0f, { 21,22,23,24,25,26,27 });
 
-	playerStatistics = PlayerStat();
-
-	bombPool.clear();
-	AddToBombPool(10, 0);
+	initialPos = Vector2(430.0f, 512.0f);
+	ResetPlayer();
 }
 
 void Player::PlaceBomb(int bombType)
@@ -118,6 +116,16 @@ void Player::PlayerDied()
 PlayerStat Player::GetPlayerStatistics()
 {
 	return playerStatistics;
+}
+
+void Player::ResetPlayer()
+{
+	playerStatistics = PlayerStat();
+	isOutOfLife = false;
+
+	bombPool.clear();
+	AddToBombPool(10, 0);
+	GetSprite()->SetPosition(initialPos.x, initialPos.y);
 }
 
 void Player::RenderUIComponents()

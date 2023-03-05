@@ -3,6 +3,7 @@
 
 void GameObject::CreateGOSprite(const char* path, int col, int row, float xPos, float yPos, float scale)
 {
+	initialPosition = Vector2(xPos, yPos);
 	GOSprite = App::CreateSprite(path, col, row);
 	GOSprite->SetPosition(xPos, yPos);
 	GOSprite->SetScale(scale);
@@ -87,4 +88,10 @@ void GameObject::DrawColliderCircle()
 CSimpleSprite* GameObject::GetSprite()
 {
 	return GOSprite;
+}
+
+void GameObject::ResetGameObject()
+{
+	bool isActive = true;
+	GOSprite->SetPosition(initialPosition.x, initialPosition.y);
 }

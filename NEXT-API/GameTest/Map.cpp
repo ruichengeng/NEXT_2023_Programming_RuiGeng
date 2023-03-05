@@ -177,3 +177,16 @@ void Map::CreateGrid(int x, int y)
 
 
 }
+
+void Map::ResetMap()
+{
+	for (auto block : mapWallBlocks)
+	{
+		block->ResetGameObject();
+	}
+
+	for (auto enemy : mapEnemyPool)
+	{
+		enemy->ResetGameObject();
+	}
+}

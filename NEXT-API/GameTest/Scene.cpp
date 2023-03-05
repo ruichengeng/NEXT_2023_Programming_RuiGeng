@@ -65,3 +65,8 @@ void Scene::Render()
 		break;
 	}
 }
+
+void Scene::SetSceneString(std::vector<std::string>* msgs)
+{
+	sceneStrings = msgs;
+}

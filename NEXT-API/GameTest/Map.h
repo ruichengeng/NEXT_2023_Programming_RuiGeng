@@ -33,6 +33,9 @@ public:
 
 	SCENE_LEVEL_TYPE Map_Type = MAP_1;
 
+	//Reset for replay
+	void ResetMap();
+
 private:
 	//Background
 	CSimpleSprite* mapBackgroundSprite;

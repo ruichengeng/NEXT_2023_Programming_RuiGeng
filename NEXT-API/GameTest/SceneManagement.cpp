@@ -20,6 +20,7 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* m
 			if (loadedScenes[s]->Scene_Type == (SCENE_LEVEL_TYPE)id)
 			{
 				//Opens a map
+				loadedScenes[s]->SetSceneString(msgs);
 				activeLevel = Vector2(0, s);
 				return;
 			}
@@ -30,11 +31,14 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* m
 	}
 	else
 	{
+		player->ResetPlayer();
+
 		for (int m = 0; m < loadedMaps.size(); m++)
 		{
 			if (loadedMaps[m]->Map_Type == (SCENE_LEVEL_TYPE)id)
 			{
 				//Opens a map
+				loadedMaps[m]->ResetMap();
 				activeLevel = Vector2(1, m);
 				return;
 			}
@@ -107,9 +111,12 @@ void SceneManagement::UpdateInput(float deltaTime)
 	}
 	else if (activeType == PAUSE)
 	{
-		if (App::IsKeyPressed(VK_LSHIFT))
+		if (currentDelay <= 0.0f)
 		{
-			LoadLevel(MAP_1, new std::vector<std::string>());
+			if (App::IsKeyPressed(VK_LSHIFT))
+			{
+				LoadLevel(MAP_1, new std::vector<std::string>());
+			}
 		}
 	}
 	else if (activeType == END)
