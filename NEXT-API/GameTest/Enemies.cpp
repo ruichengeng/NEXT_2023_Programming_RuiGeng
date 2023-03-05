@@ -33,7 +33,7 @@ Enemies::Enemies(int id, std::vector<Vector2*> ai_path) : GameObject(), enemyID(
 	enemyAI = new AI(this);
 	//enemyAI->ai_Type = (AI_TYPES)id;
 	enemyAI->ai_Type = PATROL;
-	enemyAI->patrolDirection = MOVE_RIGHT;
+	enemyAI->patrolDirection = MOVE_TOP;
 	enemyAI->SetUpPath(ai_path);
 }
 

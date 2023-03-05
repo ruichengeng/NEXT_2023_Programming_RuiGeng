@@ -13,7 +13,7 @@ public:
 	~SceneManagement() {}
 
 	//Scenes
-	void LoadLevel(SCENE_LEVEL_TYPE id);
+	void LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* msgs);
 
 	void UpdateSceneComponents(float deltaTime);
 	void UpdateInput(float deltaTime);
@@ -29,6 +29,8 @@ private:
 
 	Vector2 activeLevel = Vector2(-1, -1);
 	SCENE_LEVEL_TYPE activeType;
+
+	//int gameProgress = -1;
 
 	//Input Delays
 	float inputDelay = 0.5f;

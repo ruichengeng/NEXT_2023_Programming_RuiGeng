@@ -3,12 +3,12 @@
 
 SceneManagement::SceneManagement()
 {
-	player = new Player();
-	LoadLevel(INTRO);
+	player = new Player(0);
+	LoadLevel(INTRO, new std::vector<std::string>());
 	//LoadLevel(MAP_1);
 }
 
-void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id)
+void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* msgs)
 {
 	activeType = id;
 	currentDelay = inputDelay;
@@ -26,7 +26,7 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id)
 		}
 
 		activeLevel = Vector2(0, loadedScenes.size());
-		loadedScenes.push_back(new Scene(id));
+		loadedScenes.push_back(new Scene(id, msgs));
 	}
 	else
 	{
@@ -48,10 +48,13 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id)
 void SceneManagement::UpdateSceneComponents(float deltaTime)
 {
 	UpdateInput(deltaTime);
-	CollisionChecks();
 
 	if (activeLevel.x == 0) //Game Scenes
 	{
+		if (activeType == END)
+		{
+
+		}
 		//if (loadedScenes[activeLevel.y] != nullptr)
 		//{
 		//	loadedScenes[activeLevel.y]->Update(deltaTime);
@@ -59,49 +62,64 @@ void SceneManagement::UpdateSceneComponents(float deltaTime)
 	}
 	else if (activeLevel.x == 1) //Game Map Levels
 	{
+		CollisionChecks();
+
 		if (loadedMaps[activeLevel.y] != nullptr)
 		{
 			loadedMaps[activeLevel.y]->Update(deltaTime);
 		}
 		player->UpdatePlayerElements(deltaTime);
+
+		if (player->isOutOfLife)
+		{
+			//Pass player score to end screen
+			std::vector<std::string>* data = new std::vector<std::string>();
+
+			data->push_back("Enemies Killed: " + std::to_string(player->GetPlayerStatistics().EnemyKills));
+			data->push_back("Time Survived: " + std::to_string((int)roundf(player->GetPlayerStatistics().timeElapsed)));
+			LoadLevel(END, data);
+		}
 	}	
 }
 
 void SceneManagement::UpdateInput(float deltaTime)
 {
-	//Game Controls
-	if (currentDelay <= 0.0f)
+	//for (auto s : loadedScenes)
+	//{
+	//	if (s->Scene_Type == activeType)
+	//	{
+	//		
+	//	}
+	//}
+
+	for (auto m : loadedMaps)
 	{
-		if (activeLevel.x == 0)
+		m->Update((m->Map_Type == activeType) ? deltaTime : 0.0f);
+	}
+
+	//Game Controls
+	if (activeType == INTRO) //Intro screen controls
+	{
+		if (App::IsKeyPressed(VK_SPACE))
 		{
-			if (activeType == INTRO) //Intro screen controls
-			{
-				if (App::IsKeyPressed(VK_SPACE))
-				{
-					LoadLevel(MAP_1);
-				}
-			}
-
-			if (activeType == PAUSE)
-			{
-				if (App::IsKeyPressed(VK_LSHIFT))
-				{
-					LoadLevel(MAP_1);
-				}
-			}
-
-			if (activeType == END)
-			{
-
-			}
+			LoadLevel(MAP_1, new std::vector<std::string>());
+		}
+	}
+	else if (activeType == PAUSE)
+	{
+		if (App::IsKeyPressed(VK_LSHIFT))
+		{
+			LoadLevel(MAP_1, new std::vector<std::string>());
+		}
+	}
+	else if (activeType == END)
+	{
+		if (App::IsKeyPressed(VK_LSHIFT))
+		{
+			LoadLevel(INTRO, new std::vector<std::string>());
 		}
 	}
 	else
-	{
-		currentDelay-=deltaTime*0.001f;
-	}
-
-	if (activeLevel.x == 1)
 	{
 		//Player Movements
 		if ((App::GetController().GetLeftThumbStickX() != 0.0f) || (App::GetController().GetLeftThumbStickY() != 0.0f))
@@ -139,10 +157,90 @@ void SceneManagement::UpdateInput(float deltaTime)
 
 			if (App::IsKeyPressed(VK_LSHIFT))
 			{
-				LoadLevel(PAUSE);
+				LoadLevel(PAUSE, new std::vector<std::string>());
 			}
 		}
 	}
+
+	(currentDelay <= 0.0f) ? currentDelay = 0.0f : currentDelay -= deltaTime * 0.001f;
+
+	//if (currentDelay <= 0.0f)
+	//{
+	//	currentDelay = 0.0f;
+	//
+	//	
+	//
+	//	//if (activeLevel.x == 0)
+	//	//{
+	//	//	if (activeType == INTRO) //Intro screen controls
+	//	//	{
+	//	//		if (App::IsKeyPressed(VK_SPACE))
+	//	//		{
+	//	//			LoadLevel(MAP_1, new std::vector<std::string>());
+	//	//		}
+	//	//	}
+	//	//
+	//	//	if (activeType == PAUSE)
+	//	//	{
+	//	//		if (App::IsKeyPressed(VK_LSHIFT))
+	//	//		{
+	//	//			LoadLevel(MAP_1, new std::vector<std::string>());
+	//	//		}
+	//	//	}
+	//	//
+	//	//	if (activeType == END)
+	//	//	{
+	//	//
+	//	//	}
+	//	//}
+	//}
+	//else
+	//{
+	//	currentDelay-=deltaTime*0.001f;
+	//}
+
+	//if (activeLevel.x == 1)
+	//{
+	//	//Player Movements
+	//	if ((App::GetController().GetLeftThumbStickX() != 0.0f) || (App::GetController().GetLeftThumbStickY() != 0.0f))
+	//	{
+	//		if (App::GetController().GetLeftThumbStickX() > 0.5f)
+	//		{
+	//			player->Move(MOVE_RIGHT);
+	//		}
+	//		else if (App::GetController().GetLeftThumbStickX() < -0.5f)
+	//		{
+	//			player->Move(MOVE_LEFT);
+	//		}
+	//
+	//		if (App::GetController().GetLeftThumbStickY() > 0.5f)
+	//		{
+	//			player->Move(MOVE_TOP);
+	//		}
+	//		else if (App::GetController().GetLeftThumbStickY() < -0.5f)
+	//		{
+	//			player->Move(MOVE_DOWN);
+	//		}
+	//	}
+	//	else
+	//	{
+	//		player->Move(MOVE_NONE);
+	//	}
+	//
+	//	if (currentDelay <= 0.0f)
+	//	{
+	//		if (App::IsKeyPressed(VK_SPACE))
+	//		{
+	//			player->PlaceBomb(0);
+	//			currentDelay = inputDelay;
+	//		}
+	//
+	//		if (App::IsKeyPressed(VK_LSHIFT))
+	//		{
+	//			LoadLevel(PAUSE, new std::vector<std::string>());
+	//		}
+	//	}
+	//}
 }
 
 void SceneManagement::Render()

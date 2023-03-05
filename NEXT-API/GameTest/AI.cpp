@@ -124,45 +124,6 @@ void AI::findNextPos()
 			availablePos[3] = position;
 		}
 
-
-		//Temp for debug:
-		if (availablePos[0] != nullptr)
-		{
-			
-			std::cout << "Available Top x:" << availablePos[0]->x << " y: " << availablePos[0]->y << std::endl;
-		}
-		else
-		{
-			std::cout << "Unavailable Top .................." << std::endl;
-		}
-
-		if (availablePos[1] != nullptr)
-		{
-			std::cout << "Available Down x:" << availablePos[1]->x << " y: " << availablePos[1]->y << std::endl;
-		}
-		else
-		{
-			std::cout << "Unavailable Down .................." << std::endl;
-		}
-
-		if (availablePos[2] != nullptr)
-		{
-			std::cout << "Available Left x:" << availablePos[2]->x << " y: " << availablePos[2]->y << std::endl;
-		}
-		else
-		{
-			std::cout << "Unavailable Left .................." << std::endl;
-		}
-
-		if (availablePos[3] != nullptr)
-		{
-			std::cout << "Available Right x:" << availablePos[3]->x << " y: " << availablePos[3]->y << std::endl;
-		}
-		else
-		{
-			std::cout << "Unavailable Right .................." << std::endl;
-		}
-
 		//if (dY <= ai_Character->ObjectRadius*2.0f && dX <= ai_Character->ObjectRadius*2.0f)
 		//{
 		//	(xAi > position->x) ? availablePos[2] = position : availablePos[3] = position;
@@ -176,25 +137,25 @@ void AI::findNextPos()
 
 	switch (patrolDirection)
 	{
-	case MOVE_TOP:
+	case MOVE_DOWN:
 		if (availablePos[0] != nullptr)
 		{
 			nextPosition = availablePos[0];
 		}
 		else
 		{
-			patrolDirection = MOVE_DOWN;
+			patrolDirection = MOVE_TOP;
 			if (availablePos[1] != nullptr) nextPosition = availablePos[1];
 		}
 		break;
-	case MOVE_DOWN:
+	case MOVE_TOP:
 		if (availablePos[1] != nullptr)
 		{
 			nextPosition = availablePos[1];
 		}
 		else
 		{
-			patrolDirection = MOVE_TOP;
+			patrolDirection = MOVE_DOWN;
 			if (availablePos[0] != nullptr) nextPosition = availablePos[0];
 			//nextPosition = availablePos[0];
 		}

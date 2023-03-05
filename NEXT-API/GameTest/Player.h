@@ -7,7 +7,7 @@ class PlayerStat
 public:
 	//Default values, changeable within the player class constructor
 	int CharacterLevel = 1; //Can level up to increase damage output, gain extra abilities, etc.
-	int Lives = 3;
+	int Lives = 1;
 	int BombCount = 10;
 	int EnemyKills = 0;
 	int XP = 0;
@@ -17,6 +17,7 @@ public:
 };
 
 class WallBlock;
+class SceneManagement;
 
 //Player class, responsible for the character selection and behaviours
 class Player : public GameObject
@@ -39,6 +40,9 @@ public:
 
 	//Player dying
 	void PlayerDied();
+
+	PlayerStat GetPlayerStatistics();
+	bool isOutOfLife = false;
 
 private:
 	void RenderUIComponents();

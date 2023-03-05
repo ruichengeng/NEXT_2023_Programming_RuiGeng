@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "WallBlock.h"
+#include "SceneManagement.h"
 
 Player::Player():Player(0) {}
 
@@ -103,8 +104,20 @@ void Player::PlayerTouchedWall(WallBlock* wall)
 
 void Player::PlayerDied()
 {
-	playerStatistics.Lives--;
-	GetSprite()->SetPosition(500.0f, 500.0f);
+	if (playerStatistics.Lives > 1)
+	{
+		playerStatistics.Lives--;
+		GetSprite()->SetPosition(500.0f, 500.0f);
+	}
+	else
+	{
+		isOutOfLife = true;
+	}
+}
+
+PlayerStat Player::GetPlayerStatistics()
+{
+	return playerStatistics;
 }
 
 void Player::RenderUIComponents()
