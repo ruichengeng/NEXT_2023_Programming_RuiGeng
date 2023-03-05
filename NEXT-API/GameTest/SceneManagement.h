@@ -3,7 +3,8 @@
 #include "Player.h"
 
 
-//SceneManagement takes care of the scenes and maps within them
+//SceneManagement takes care of the levels and maps within them
+//Functions like the game's "core"
 class SceneManagement
 {
 public:
@@ -11,12 +12,18 @@ public:
 	~SceneManagement() {}
 
 	//Scenes
-	void LoadScene(int id);
+	void LoadLevel(SCENE_LEVEL_TYPE id);
 
-	void LoadMap(int id);
 	void UpdateSceneComponents(float deltaTime);
+	void UpdateInput();
+	void Render();
+
+private:
+	void CollisionChecks();
 
 private:
 	Player* player;
 	std::vector<Map*> loadedMaps;
+
+	int activeLevel = -1;
 };

@@ -2,6 +2,14 @@
 
 //All Enum Types Used
 
+enum SCENE_LEVEL_TYPE
+{
+	INTRO,
+	MAP_1,
+	MAP_2,
+	END
+};
+
 enum AI_TYPES
 {
 	PATROL,

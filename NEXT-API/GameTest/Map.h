@@ -7,7 +7,7 @@ class Map
 public:
 	Map();
 	//Expandable to host multiple map levels
-	Map(int id);
+	Map(SCENE_LEVEL_TYPE id);
 	~Map() {}
 
 	void Update(float deltaTime);
@@ -30,6 +30,8 @@ public:
 
 	//Grid System
 	void CreateGrid(int x, int y);
+
+	SCENE_LEVEL_TYPE Map_Type = MAP_1;
 
 private:
 	//Background

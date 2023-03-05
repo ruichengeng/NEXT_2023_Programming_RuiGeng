@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "Map.h"
 
-Map::Map() : Map(0) {}
+Map::Map() : Map(INTRO) {}
 
-Map::Map(int id)
+Map::Map(SCENE_LEVEL_TYPE id) : Map_Type(id)
 {
 	mapBackgroundSprite = App::CreateSprite(".\\Art\\blankBackground.bmp", 1, 1);
 	mapBackgroundSprite->SetPosition(512.0f, 512.0f);
