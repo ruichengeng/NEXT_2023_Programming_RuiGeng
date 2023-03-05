@@ -125,19 +125,6 @@ void SceneManagement::UpdateSceneComponents(float deltaTime)
 
 void SceneManagement::UpdateInput(float deltaTime)
 {
-	//for (auto s : loadedScenes)
-	//{
-	//	if (s->Scene_Type == activeType)
-	//	{
-	//		
-	//	}
-	//}
-
-	//for (auto m : loadedMaps)
-	//{
-	//	m->Update((m->Map_Type == activeType) ? deltaTime : 0.0f);
-	//}
-
 	//Game Controls
 	if (activeType == INTRO) //Intro screen controls
 	{

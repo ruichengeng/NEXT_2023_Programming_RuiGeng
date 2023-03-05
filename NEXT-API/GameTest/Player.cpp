@@ -156,7 +156,7 @@ void Player::ResetPlayer()
 	isOutOfLife = false;
 
 	bombPool.clear();
-	AddToBombPool(10, 0);
+	//AddToBombPool(10, 0);
 	GetSprite()->SetPosition(initialPos.x, initialPos.y);
 }
 

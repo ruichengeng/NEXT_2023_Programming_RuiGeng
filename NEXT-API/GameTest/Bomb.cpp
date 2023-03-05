@@ -66,7 +66,6 @@ void Bomb::Explode()
 
 void Bomb::RenderBomb()
 {
-	Render();
 	for (auto arm : bombArms)
 	{
 		if (Exploded)
@@ -74,6 +73,7 @@ void Bomb::RenderBomb()
 			arm->Render();
 		}
 	}
+	Render();
 }
 
 void Bomb::createBombArms(int x, int y)
@@ -93,7 +93,7 @@ void Bomb::createBombArms(int x, int y)
 		{
 			tempPos2 = findAvailablePos(tempPos[2], ObjectRadius, ObjectRadius);
 
-			if (tempPos2[2].x != -1 && tempPos2[2].y != -1)
+			if ((tempPos2[2].x != -1 && tempPos2[2].y != -1) && (i < (hX - 1)))
 			{
 				//There is an extra space
 				
@@ -125,7 +125,7 @@ void Bomb::createBombArms(int x, int y)
 		{
 			tempPos2 = findAvailablePos(tempPos[3], ObjectRadius, ObjectRadius);
 
-			if (tempPos2[3].x != -1 && tempPos2[3].y != -1)
+			if ((tempPos2[3].x != -1 && tempPos2[3].y != -1) && (i < (hX - 1)))
 			{
 				//There is an extra space
 
@@ -149,15 +149,15 @@ void Bomb::createBombArms(int x, int y)
 		}
 	}
 
-	//Horizontal - Top
+	//Horizontal - Down
 	tempPos = availableCenterSpots;
-	for (int i = 0; i < hX; i++)
+	for (int i = 0; i < hY; i++)
 	{
 		if (tempPos[1].x != -1 && tempPos[1].y != -1)
 		{
 			tempPos2 = findAvailablePos(tempPos[1], ObjectRadius, ObjectRadius);
 
-			if (tempPos2[1].x != -1 && tempPos2[1].y != -1)
+			if ((tempPos2[1].x != -1 && tempPos2[1].y != -1) && (i < (hY - 1)))
 			{
 				//There is an extra space
 
@@ -173,7 +173,7 @@ void Bomb::createBombArms(int x, int y)
 			{
 				//No more space
 				BombArm* arm = new BombArm(this);
-				arm->CreateGOSprite(".\\Art\\exp_top.bmp", 1, 1, tempPos[1].x, tempPos[1].y, 1.0f);
+				arm->CreateGOSprite(".\\Art\\exp_down.bmp", 1, 1, tempPos[1].x, tempPos[1].y, 1.0f);
 				bombArms.push_back(arm);
 				//Spawn an arm tip
 				i += hX;
@@ -181,15 +181,15 @@ void Bomb::createBombArms(int x, int y)
 		}
 	}
 
-	//Horizontal - Down
+	//Horizontal - Top
 	tempPos = availableCenterSpots;
-	for (int i = 0; i < hX; i++)
+	for (int i = 0; i < hY; i++)
 	{
 		if (tempPos[0].x != -1 && tempPos[0].y != -1)
 		{
 			tempPos2 = findAvailablePos(tempPos[0], ObjectRadius, ObjectRadius);
 
-			if (tempPos2[0].x != -1 && tempPos2[0].y != -1)
+			if ((tempPos2[0].x != -1 && tempPos2[0].y != -1) && (i < (hY - 1) ))
 			{
 				//There is an extra space
 
@@ -205,7 +205,7 @@ void Bomb::createBombArms(int x, int y)
 			{
 				//No more space
 				BombArm* arm = new BombArm(this);
-				arm->CreateGOSprite(".\\Art\\exp_down.bmp", 1, 1, tempPos[0].x, tempPos[0].y, 1.0f);
+				arm->CreateGOSprite(".\\Art\\exp_top.bmp", 1, 1, tempPos[0].x, tempPos[0].y, 1.0f);
 				bombArms.push_back(arm);
 				//Spawn an arm tip
 				i += hX;
