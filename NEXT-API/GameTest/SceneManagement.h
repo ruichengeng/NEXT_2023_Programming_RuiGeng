@@ -16,7 +16,7 @@ public:
 	void LoadLevel(SCENE_LEVEL_TYPE id);
 
 	void UpdateSceneComponents(float deltaTime);
-	void UpdateInput();
+	void UpdateInput(float deltaTime);
 	void Render();
 
 private:
@@ -29,4 +29,8 @@ private:
 
 	Vector2 activeLevel = Vector2(-1, -1);
 	SCENE_LEVEL_TYPE activeType;
+
+	//Input Delays
+	float inputDelay = 0.5f;
+	float currentDelay = 0.0f;
 };

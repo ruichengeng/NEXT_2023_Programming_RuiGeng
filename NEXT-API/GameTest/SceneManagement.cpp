@@ -11,15 +11,16 @@ SceneManagement::SceneManagement()
 void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id)
 {
 	activeType = id;
+	currentDelay = inputDelay;
 
 	if ((id == INTRO || id == PAUSE) || id == END)
 	{
-		for (auto scene : loadedScenes)
+		for (int s = 0; s < loadedScenes.size(); s++)
 		{
-			if (scene->Scene_Type == (SCENE_LEVEL_TYPE)id)
+			if (loadedScenes[s]->Scene_Type == (SCENE_LEVEL_TYPE)id)
 			{
 				//Opens a map
-
+				activeLevel = Vector2(0, s);
 				return;
 			}
 		}
@@ -29,12 +30,12 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id)
 	}
 	else
 	{
-		for (auto level : loadedMaps)
+		for (int m = 0; m < loadedMaps.size(); m++)
 		{
-			if (level->Map_Type == (SCENE_LEVEL_TYPE)id)
+			if (loadedMaps[m]->Map_Type == (SCENE_LEVEL_TYPE)id)
 			{
 				//Opens a map
-
+				activeLevel = Vector2(1, m);
 				return;
 			}
 		}
@@ -46,7 +47,7 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id)
 
 void SceneManagement::UpdateSceneComponents(float deltaTime)
 {
-	UpdateInput();
+	UpdateInput(deltaTime);
 	CollisionChecks();
 
 	if (activeLevel.x == 0) //Game Scenes
@@ -66,19 +67,38 @@ void SceneManagement::UpdateSceneComponents(float deltaTime)
 	}	
 }
 
-void SceneManagement::UpdateInput()
+void SceneManagement::UpdateInput(float deltaTime)
 {
 	//Game Controls
-	if (activeLevel.x == 0)
+	if (currentDelay <= 0.0f)
 	{
-		if (activeType == INTRO) //Intro screen controls
+		if (activeLevel.x == 0)
 		{
-			if (App::IsKeyPressed(VK_SPACE))
+			if (activeType == INTRO) //Intro screen controls
 			{
-				LoadLevel(MAP_1);
+				if (App::IsKeyPressed(VK_SPACE))
+				{
+					LoadLevel(MAP_1);
+				}
+			}
+
+			if (activeType == PAUSE)
+			{
+				if (App::IsKeyPressed(VK_LSHIFT))
+				{
+					LoadLevel(MAP_1);
+				}
+			}
+
+			if (activeType == END)
+			{
+
 			}
 		}
-		
+	}
+	else
+	{
+		currentDelay-=deltaTime*0.001f;
 	}
 
 	if (activeLevel.x == 1)
@@ -109,9 +129,18 @@ void SceneManagement::UpdateInput()
 			player->Move(MOVE_NONE);
 		}
 
-		if (App::IsKeyPressed(VK_SPACE))
+		if (currentDelay <= 0.0f)
 		{
-			player->PlaceBomb(0);
+			if (App::IsKeyPressed(VK_SPACE))
+			{
+				player->PlaceBomb(0);
+				currentDelay = inputDelay;
+			}
+
+			if (App::IsKeyPressed(VK_LSHIFT))
+			{
+				LoadLevel(PAUSE);
+			}
 		}
 	}
 }
