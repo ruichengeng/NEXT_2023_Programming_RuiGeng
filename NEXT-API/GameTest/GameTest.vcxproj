@@ -195,9 +195,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Map.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="Map1.h" />
+    <ClInclude Include="MapBase.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManagement.h" />
     <ClInclude Include="Player.h">
@@ -229,9 +228,8 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameTest.cpp" />
-    <ClCompile Include="Map.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Map1.cpp" />
+    <ClCompile Include="MapBase.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManagement.cpp" />
     <ClCompile Include="Player.cpp">

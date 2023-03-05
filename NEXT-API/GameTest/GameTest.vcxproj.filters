@@ -35,13 +35,16 @@
     <ClCompile Include="SceneManagement.cpp">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Challenge Entry\Scene and Maps</Filter>
-    </ClCompile>
     <ClCompile Include="SmallMap.cpp">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBase.cpp">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="Map1.cpp">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClCompile>
   </ItemGroup>
@@ -82,13 +85,16 @@
     <ClInclude Include="SceneManagement.h">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Challenge Entry\Scene and Maps</Filter>
-    </ClInclude>
     <ClInclude Include="SmallMap.h">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBase.h">
+      <Filter>Challenge Entry\Scene and Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="Map1.h">
       <Filter>Challenge Entry\Scene and Maps</Filter>
     </ClInclude>
   </ItemGroup>

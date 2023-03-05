@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Scene.h"
-#include "Map.h"
+#include "MapBase.h"
 
 Scene::Scene():Scene(INTRO, new std::vector<std::string>()){}
 

@@ -45,7 +45,32 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* m
 		}
 
 		activeLevel = Vector2(1, loadedMaps.size());
-		loadedMaps.push_back(new Map(id));
+
+		if ((SCENE_LEVEL_TYPE)id == MAP_1)
+		{
+			loadedMaps.push_back(new Map1());
+		}
+		else if ((SCENE_LEVEL_TYPE)id == MAP_2)
+		{
+			loadedMaps.push_back(new SmallMap());
+		}
+
+
+		//For future expansion of implementing N number of map levels
+		// 
+		//for (int m = 0; m < loadedMaps.size(); m++)
+		//{
+		//	if (loadedMaps[m]->Map_Type == (SCENE_LEVEL_TYPE)id)
+		//	{
+		//		//Opens a map
+		//		loadedMaps[m]->ResetMap();
+		//		activeLevel = Vector2(1, m);
+		//		return;
+		//	}
+		//}
+		//
+		//activeLevel = Vector2(1, loadedMaps.size());
+		//loadedMaps.push_back(new Map1(id));
 	}
 }
 

@@ -1,5 +1,6 @@
 #pragma once
-#include "Map.h"
+#include "Map1.h"
+#include "SmallMap.h"
 #include "Player.h"
 #include "Scene.h"
 
@@ -25,7 +26,7 @@ private:
 private:
 	Player* player;
 	std::vector<Scene*> loadedScenes;//Game Scenes (initial, pause, end)
-	std::vector<Map*> loadedMaps;//Game Map Levels
+	std::vector<MapBase*> loadedMaps;//Game Map Levels
 
 	Vector2 activeLevel = Vector2(-1, -1);
 	SCENE_LEVEL_TYPE activeType;
