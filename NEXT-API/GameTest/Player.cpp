@@ -89,6 +89,16 @@ void Player::RenderPlayerElements()
 	RenderUIComponents();
 }
 
+std::vector<Bomb*> Player::GetPlayerBombs()
+{
+	return bombPool;
+}
+
+void Player::EnemyKilled(int k)
+{
+	playerStatistics.EnemyKills += k;
+}
+
 void Player::SetBombSpawnablePos(std::vector<Vector2*> pos)
 {
 	potentialBombSpawnPos = pos;

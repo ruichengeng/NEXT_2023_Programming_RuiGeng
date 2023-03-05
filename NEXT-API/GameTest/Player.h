@@ -28,12 +28,15 @@ public:
 	Player(int id, std::vector<Vector2*> ai_path);
 	~Player() {}
 
-	//Bomb object-pool functions
+	//Bomb object-pool and related functions
 	void PlaceBomb(int bombType);
 	void AddToBombPool(int count, int bombType);
 	//void ReturnBomb(Bomb* b);
 	void UpdatePlayerElements(float deltaTime); //For player and bombs
 	void RenderPlayerElements();
+	std::vector<Bomb*> GetPlayerBombs();
+
+	void EnemyKilled(int k = 1);
 
 	//Setting the empty spaces
 	void SetBombSpawnablePos(std::vector<Vector2*> pos);

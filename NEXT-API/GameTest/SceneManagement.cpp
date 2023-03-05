@@ -362,6 +362,27 @@ void SceneManagement::CollisionChecks()
 			}
 		}
 
+		//Check between the bomb and player/enemies
+		for (auto bomb : player->GetPlayerBombs())
+		{
+			if (bomb->isActive && bomb->Exploded)
+			{
+				if (CollisionManager::instance().hasHitAABB(player, bomb))
+				{
+					player->PlayerDied();
+				}
+
+				for (auto enemy : loadedMaps[activeLevel.y]->GetMapEnemies())
+				{
+					if (CollisionManager::instance().hasHitAABB(bomb, enemy))
+					{
+						player->EnemyKilled();
+						enemy->ExplosionDamage(1);
+					}
+				}
+			}
+		}
+
 		//Check between enemies and enemies
 		//for (int e1 = 0; e1 < gameMap->GetMapEnemies().size(); e1++)
 		//{
