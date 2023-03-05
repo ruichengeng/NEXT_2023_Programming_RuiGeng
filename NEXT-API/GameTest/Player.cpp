@@ -2,10 +2,11 @@
 #include "Player.h"
 #include "WallBlock.h"
 #include "SceneManagement.h"
+#include "Enemies.h"
 
 Player::Player():Player(0, std::vector<Vector2*>()) {}
 
-Player::Player(int id, std::vector<Vector2*> ai_path):GameObject(24.0f), potentialBombSpawnPos(ai_path)
+Player::Player(int id, std::vector<Vector2*> ai_path):GameObject(24.0f), potentialBombSpawnPos(ai_path), allEnemiesKilled(std::vector<Enemies*>())
 {
 	//For character selection, the id can be added to the end of the name. I.e: Player0, Player1, etc
 	CreateGOSprite(".\\Art\\NeoEarlyBomberman.bmp", 7, 4, 430.0f, 512.0f, 1.0f);
@@ -51,7 +52,7 @@ void Player::AddToBombPool(int count, int bombType)
 {
 	for (int b = 0; b < count; b++)
 	{
-		Bomb* newBomb = new Bomb(bombType);
+		Bomb* newBomb = new Bomb(bombType, potentialBombSpawnPos);
 		newBomb->isActive = false;
 		bombPool.push_back(newBomb);
 	}
@@ -83,7 +84,7 @@ void Player::RenderPlayerElements()
 
 	for (int i = 0; i < bombPool.size(); i++)
 	{
-		if (bombPool[i]->isActive) bombPool[i]->Render();
+		if (bombPool[i]->isActive) bombPool[i]->RenderBomb();
 	}
 
 	RenderUIComponents();
@@ -94,9 +95,18 @@ std::vector<Bomb*> Player::GetPlayerBombs()
 	return bombPool;
 }
 
-void Player::EnemyKilled(int k)
+void Player::EnemyKilled(Enemies* enemy)
 {
-	playerStatistics.EnemyKills += k;
+	for (auto e : allEnemiesKilled)
+	{
+		if (e == enemy)
+		{
+			return;
+		}
+	}
+
+	allEnemiesKilled.push_back(enemy);
+	playerStatistics.EnemyKills = allEnemiesKilled.size();
 }
 
 void Player::SetBombSpawnablePos(std::vector<Vector2*> pos)

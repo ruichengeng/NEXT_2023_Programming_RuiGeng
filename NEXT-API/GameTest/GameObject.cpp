@@ -71,11 +71,6 @@ void GameObject::DrawColliderCircle()
 	//Calculate circle points
 	std::vector<Vector2> circlePoints = std::vector<Vector2>();
 
-	for (int angle = 0; angle < PI * 2.0f; angle += PI / 0.125f)
-	{
-
-	}
-
 	float theta = 0.0f;
 	for (int i = 0; i < 10; ++i)
 	{

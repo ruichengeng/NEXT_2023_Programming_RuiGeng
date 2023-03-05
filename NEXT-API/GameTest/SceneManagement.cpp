@@ -376,7 +376,7 @@ void SceneManagement::CollisionChecks()
 				{
 					if (CollisionManager::instance().hasHitAABB(bomb, enemy))
 					{
-						player->EnemyKilled();
+						player->EnemyKilled(enemy);
 						enemy->ExplosionDamage(1);
 					}
 				}

@@ -18,6 +18,7 @@ public:
 
 class WallBlock;
 class SceneManagement;
+class Enemies;
 
 //Player class, responsible for the character selection and behaviours
 class Player : public GameObject
@@ -36,7 +37,7 @@ public:
 	void RenderPlayerElements();
 	std::vector<Bomb*> GetPlayerBombs();
 
-	void EnemyKilled(int k = 1);
+	void EnemyKilled(Enemies* enemy);
 
 	//Setting the empty spaces
 	void SetBombSpawnablePos(std::vector<Vector2*> pos);
@@ -65,4 +66,5 @@ private:
 	float currentSpawnCoolDown = 0.0f;
 
 	std::vector<Vector2*> potentialBombSpawnPos;
+	std::vector<Enemies*> allEnemiesKilled;
 };
