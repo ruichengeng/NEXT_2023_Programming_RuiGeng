@@ -11,4 +11,6 @@ public:
 	//No Enemies in this map
 	void CreateWallBlockPool(int count) override;
 	void CreateGrid(int x, int y) override;
+
+	void CreateChildrenElements();
 };

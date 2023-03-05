@@ -91,4 +91,15 @@ void SmallMap::CreateGrid(int x, int y)
 
 	//Empty Grid Points
 	CreateEnemyPool(1, emptyGridPoints);
+	CreateChildrenElements();
+}
+
+void SmallMap::CreateChildrenElements()
+{
+	allChildren.clear();
+
+	for (auto w : mapWallBlocks)
+	{
+		allChildren.push_back(w);
+	}
 }

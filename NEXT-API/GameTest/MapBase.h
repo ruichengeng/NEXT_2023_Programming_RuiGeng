@@ -29,8 +29,12 @@ public:
 	//Grid System
 	virtual void CreateGrid(int x, int y) {}
 
+	virtual void DrawDebugElements(bool draw);
+
 	//Reset for replay
 	void ResetMap();
+
+	bool Map_Debug = false;
 
 public:
 	SCENE_LEVEL_TYPE Map_Type = INTRO;
@@ -44,4 +48,7 @@ public:
 	//Grid
 	std::vector<Vector2> mapGridIntersections;
 	std::vector<Vector2*> emptyGridPoints;
+
+	//Children
+	std::vector<GameObject*> allChildren;
 };

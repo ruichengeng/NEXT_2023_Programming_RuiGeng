@@ -11,5 +11,7 @@ public:
 	void CreateWallBlockPool(int count) override;
 	void CreateGrid(int x, int y) override;
 
+	void CreateChildrenElements();
+
 	WallBlock* teleportBlock;
 };

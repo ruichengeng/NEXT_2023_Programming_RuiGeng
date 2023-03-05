@@ -53,7 +53,8 @@ void GameObject::Render()
 	if (isActive)
 	{
 		GOSprite->Draw();
-		DrawColliderCircle();
+
+		if (isDebug)DrawColliderCircle();
 	}
 }
 
@@ -82,6 +83,11 @@ void GameObject::DrawColliderCircle()
 	{
 		App::DrawLine(circlePoints[p].x, circlePoints[p].y, circlePoints[p + 1].x, circlePoints[p + 1].y, 1.0f, 0.0f, 0.0f);
 	}
+
+	App::DrawLine(x - ObjectRadius, y - ObjectRadius, x + ObjectRadius, y - ObjectRadius, 1.0f, 0.0f, 0.0f);
+	App::DrawLine(x - ObjectRadius, y - ObjectRadius, x - ObjectRadius, y + ObjectRadius, 1.0f, 0.0f, 0.0f);
+	App::DrawLine(x - ObjectRadius, y + ObjectRadius, x + ObjectRadius, y + ObjectRadius, 1.0f, 0.0f, 0.0f);
+	App::DrawLine(x + ObjectRadius, y - ObjectRadius, x + ObjectRadius, y + ObjectRadius, 1.0f, 0.0f, 0.0f);
 
 	//for (int i = 0; i < PI * 2.0f; i += PI/0.125f)
 	//{

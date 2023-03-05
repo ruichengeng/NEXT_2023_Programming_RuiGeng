@@ -36,4 +36,6 @@ private:
 	//Input Delays
 	float inputDelay = 0.25f;
 	float currentDelay = 0.0f;
+
+	bool isDebug = false;
 };

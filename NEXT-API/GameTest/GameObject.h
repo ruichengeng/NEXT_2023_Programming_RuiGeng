@@ -26,6 +26,7 @@ public:
 
 	bool isActive = true;
 	const float ObjectRadius;
+	bool isDebug = false;
 
 	//Reset
 	void ResetGameObject();

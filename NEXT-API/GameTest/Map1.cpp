@@ -100,4 +100,20 @@ void Map1::CreateGrid(int x, int y)
 
 	//Empty Grid Points
 	CreateEnemyPool(1, emptyGridPoints);
+	CreateChildrenElements();
+}
+
+void Map1::CreateChildrenElements()
+{
+	allChildren.clear();
+
+	for (auto e : mapEnemyPool)
+	{
+		allChildren.push_back(e);
+	}
+
+	for (auto w : mapWallBlocks)
+	{
+		allChildren.push_back(w);
+	}
 }

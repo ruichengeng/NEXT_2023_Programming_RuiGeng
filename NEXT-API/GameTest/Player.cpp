@@ -160,6 +160,16 @@ void Player::ResetPlayer()
 	GetSprite()->SetPosition(initialPos.x, initialPos.y);
 }
 
+void Player::ShowPlayerDebugCollider(bool draw)
+{
+	isDebug = draw;
+
+	for (auto b : bombPool)
+	{
+		isDebug = draw;
+	}
+}
+
 void Player::RenderUIComponents()
 {
 	std::string level = "Level: " + std::to_string(playerStatistics.CharacterLevel);

@@ -50,9 +50,10 @@ void Scene::Render()
 	switch (Scene_Type)
 	{
 	case INTRO:
-		App::Print(512, 250, "'Space' - Start Game - Drop Bomb");
-		App::Print(512, 200, "'W, A, S, D' - Movement");
-		App::Print(512, 150, "'Left Shift' - Pause Game");
+		App::Print(512, 300, "'Space' - Start Game - Drop Bomb");
+		App::Print(512, 250, "'W, A, S, D' - Movement");
+		App::Print(512, 200, "'Left Shift' - Pause Game");
+		App::Print(512, 150, "'Right Shift' - Show Collider Debug");
 		App::Print(512, 100, "'Esc' - Quit");
 		break;
 	case PAUSE:

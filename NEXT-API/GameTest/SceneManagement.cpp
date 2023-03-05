@@ -190,6 +190,20 @@ void SceneManagement::UpdateInput(float deltaTime)
 			{
 				LoadLevel(PAUSE, new std::vector<std::string>());
 			}
+
+			if (App::IsKeyPressed(VK_RSHIFT))
+			{
+				for (auto map : loadedMaps)
+				{
+					if (map->Map_Type == activeType)
+					{
+						isDebug = !isDebug;
+						player->ShowPlayerDebugCollider(isDebug);
+						map->DrawDebugElements(isDebug);
+						currentDelay = inputDelay;
+					}
+				}
+			}
 		}
 	}
 

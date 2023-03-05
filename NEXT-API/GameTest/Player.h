@@ -54,6 +54,8 @@ public:
 	//Reset Player
 	void ResetPlayer();
 
+	void ShowPlayerDebugCollider(bool draw);
+
 private:
 	void RenderUIComponents();
 	Vector2 FindBombLocation();
