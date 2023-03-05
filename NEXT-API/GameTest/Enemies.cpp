@@ -1,12 +1,13 @@
 #include "stdafx.h"
 #include "Enemies.h"
+#include "WallBlock.h"
 #include <iostream>
 
-Enemies::Enemies():Enemies(0){}
+Enemies::Enemies():Enemies(0, std::vector<Vector2*>()){}
 
-Enemies::Enemies(int id): GameObject(), enemyID(id)
+Enemies::Enemies(int id, std::vector<Vector2*> ai_path) : GameObject(), enemyID(id)
 {
-	CreateGOSprite(".\\Art\\Enemies.bmp", 13, 4, 200.0f, 200.0f, 1.0f);
+	CreateGOSprite(".\\Art\\Enemies.bmp", 13, 4, 445.0f, 210.0f, 1.0f);
 
 	//Currently there are 4 different enemies
 	//Within each of the switch's cases, a unique feature about that type of enemy can be added (expansions)
@@ -28,6 +29,12 @@ Enemies::Enemies(int id): GameObject(), enemyID(id)
 	CreateGOAnimation(ANIM_RIGHT, 1.0f / 10.0f, { 13 * id + 3, 13 * id + 4, 13 * id + 5, 13 * id + 6 });
 	CreateGOAnimation(ANIM_LEFT, 1.0f / 10.0f, { 13 * id + 7, 13 * id + 8, 13 * id + 9, 13 * id + 10 });
 	CreateGOAnimation(ANIM_FORWARDS, 1.0f / 10.0f, { 13 * id + 11, 13 * id + 12 });
+
+	enemyAI = new AI(this);
+	//enemyAI->ai_Type = (AI_TYPES)id;
+	enemyAI->ai_Type = PATROL;
+	enemyAI->patrolDirection = MOVE_RIGHT;
+	enemyAI->SetUpPath(ai_path);
 }
 
 void Enemies::ExplosionDamage(int hp_damage)
@@ -42,4 +49,28 @@ void Enemies::ExplosionDamage(int hp_damage)
 
 void Enemies::EnemyDropTraps()
 {
+}
+
+void Enemies::UpdateEnemy(float deltaTime)
+{
+	enemyAI->UpdateAI(deltaTime);
+	Update(deltaTime);
+}
+
+void Enemies::EnemyTouchedWall(WallBlock* wall)
+{
+	float wallX, wallY;
+	wall->GetSprite()->GetPosition(wallX, wallY);
+
+	float x, y;
+	GetSprite()->GetPosition(x, y);
+
+	if (abs(x - wallX) < abs(y - wallY))
+	{
+		GetSprite()->SetPosition(x, wallY + (wall->ObjectRadius + ObjectRadius) * ((abs(y - wallY)) / (y - wallY)));
+	}
+	else
+	{
+		GetSprite()->SetPosition(wallX + (wall->ObjectRadius + ObjectRadius) * ((abs(x - wallX)) / (x - wallX)), y);
+	}
 }

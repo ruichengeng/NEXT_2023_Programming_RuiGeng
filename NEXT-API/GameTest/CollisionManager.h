@@ -1,23 +1,6 @@
 #pragma once
-
+#include "EnumAndHelper.h"
 //CollisionManager: this class has collision check and math help functionalities
-
-//Basic Math Structures
-struct Vector2
-{
-	Vector2() : x(0.0f), y(0.0f) {}
-	Vector2(float xComp, float yComp) : x(xComp), y(yComp) {}
-
-	float x, y;
-};
-
-struct Vector3
-{
-	Vector3() : x(0.0f), y(0.0f), z(0.0f) {}
-	Vector3(float xComp, float yComp, float zComp) : x(xComp), y(yComp), z(zComp) {}
-
-	float x, y, z;
-};
 
 class GameObject;
 
@@ -37,6 +20,8 @@ public:
 
 	bool checkIsColliding(GameObject* obj1, GameObject* obj2);
 
+	//Radius Check
 	static bool hasHit(GameObject* obj1, GameObject* obj2);
+	//AABB Check
 	static bool hasHitAABB(GameObject* obj1, GameObject* obj2);
 };

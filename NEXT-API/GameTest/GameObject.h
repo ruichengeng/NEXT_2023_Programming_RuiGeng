@@ -4,7 +4,7 @@
 #include "CollisionManager.h"
 #include "../GameTest/App/SimpleSprite.h"
 #include "app\app.h"
-#include "EnumClasses.h"
+#include "EnumAndHelper.h"
 
 //Game Object Class: this is the base class used for our object oriented program
 

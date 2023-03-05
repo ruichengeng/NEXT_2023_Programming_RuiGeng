@@ -57,6 +57,30 @@ void CollisionChecks()
 		}
 	}
 
+	//Check between enemies and walls
+	for (auto enemy : gameMap->GetMapEnemies())
+	{
+		for (auto wall : gameMap->GetMapWalls())
+		{
+			if (CollisionManager::instance().hasHitAABB(enemy, wall))
+			{
+				enemy->EnemyTouchedWall(wall);
+			}
+		}
+	}
+
+	//Check between enemies and enemies
+	//for (int e1 = 0; e1 < gameMap->GetMapEnemies().size(); e1++)
+	//{
+	//	for (int e2 = e1 + 1; e2 < gameMap->GetMapEnemies().size(); e2++)
+	//	{
+	//		if (CollisionManager::instance().hasHitAABB(gameMap->GetMapEnemies()[e1], gameMap->GetMapEnemies()[e2]))
+	//		{
+	//
+	//		}
+	//	}
+	//}
+
 	////Check between player and impassable walls
 	//for (auto wall : gameMap->GetMapWalls())
 	//{
@@ -96,7 +120,8 @@ void Update(float deltaTime)
 		{
 			player->Move(MOVE_LEFT);
 		}
-		else if (App::GetController().GetLeftThumbStickY() > 0.5f)
+		
+		if (App::GetController().GetLeftThumbStickY() > 0.5f)
 		{
 			player->Move(MOVE_TOP);
 		}

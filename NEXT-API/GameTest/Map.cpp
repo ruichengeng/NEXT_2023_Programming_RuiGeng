@@ -8,7 +8,7 @@ Map::Map(int id)
 	mapBackgroundSprite = App::CreateSprite(".\\Art\\blankBackground.bmp", 1, 1);
 	mapBackgroundSprite->SetPosition(512.0f, 512.0f);
 	mapBackgroundSprite->SetScale(1.0f);
-	CreateEnemyPool(5);
+	
 	CreateGrid(16, 16);
 }
 
@@ -18,7 +18,7 @@ void Map::Update(float deltaTime)
 
 	for (int i = 0; i < mapEnemyPool.size(); i++)
 	{
-		mapEnemyPool[i]->Update(deltaTime);
+		mapEnemyPool[i]->UpdateEnemy(deltaTime);
 	}
 
 	for (auto wall : mapWallBlocks)
@@ -52,13 +52,13 @@ void Map::Render()
 	}
 }
 
-void Map::CreateEnemyPool(int count)
+void Map::CreateEnemyPool(int count, std::vector<Vector2*> gridPaths)
 {
 	mapEnemyPool.clear();
 
 	for (int e = 0; e < count; e++)
 	{
-		mapEnemyPool.push_back(new Enemies());
+		mapEnemyPool.push_back(new Enemies(rand()%4, gridPaths));
 	}
 }
 
@@ -82,30 +82,38 @@ void Map::CreateGrid(int x, int y)
 
 
 	//Border
-	std::vector<Vector2> borderPoints;
+	std::vector<Vector2*> borderPoints;
 	//Even grid points
-	std::vector<Vector2> evenGridPoints;
+	std::vector<Vector2*> evenGridPoints;
+	//Empty grid points for the ai behaviours
+	std::vector<Vector2*> emptyGridPoints;
 
 	//Creates the intersection points
 	for (int i = 0; i <= x; i++)
 	{
 		for (int j = 0; j <= y; j++)
 		{
+			bool gridOccupiedByBlock = false;
+
 			mapGridIntersections.push_back(Vector2(i * dx, j * dy));
 
 			//Checks for border points
 			if (((i == x)||(i == 0)) || ((j == y) ||(j == 0)))
 			{
-				borderPoints.push_back(Vector2(i * dx, j * dy));
+				borderPoints.push_back(new Vector2(i * dx, j * dy));
+				gridOccupiedByBlock = true;
 			}
 
 			if (i > 1 && j > 1)
 			{
 				if (i % 2 == 0 && j % 2 == 0)
 				{
-					evenGridPoints.push_back(Vector2(i * dx, j * dy));
+					evenGridPoints.push_back(new Vector2(i * dx, j * dy));
+					gridOccupiedByBlock = true;
 				}
 			}
+
+			if (!gridOccupiedByBlock) emptyGridPoints.push_back(new Vector2(i * dx, j * dy));
 		}
 	}
 
@@ -119,16 +127,27 @@ void Map::CreateGrid(int x, int y)
 
 	for (auto border : borderPoints)
 	{
-		WallBlock* newWallBlock = new WallBlock(border, Vector2(x, y), 0);
+		WallBlock* newWallBlock = new WallBlock(*border, Vector2(x, y), 0);
 		mapWallBlocks.push_back(newWallBlock);
 	}
 
 	for (auto eP : evenGridPoints)
 	{
-		WallBlock* newWallBlock = new WallBlock(eP, Vector2(x, y), 0);
+		WallBlock* newWallBlock = new WallBlock(*eP, Vector2(x, y), 0);
 		mapWallBlocks.push_back(newWallBlock);
 	}
 
+
+	//Empty Grid Points
+	CreateEnemyPool(1, emptyGridPoints);
+
+
+
+	//for (auto emptyGrid : emptyGridPoints)
+	//{
+	//	WallBlock* newWallBlock = new WallBlock(emptyGrid, Vector2(x, y), 1);
+	//	mapWallBlocks.push_back(newWallBlock);
+	//}
 	
 	//Finding the border first
 
@@ -155,4 +174,6 @@ void Map::CreateGrid(int x, int y)
 
 
 	//"Path finding" for AI and player
+
+
 }

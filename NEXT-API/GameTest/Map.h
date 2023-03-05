@@ -15,7 +15,7 @@ public:
 
 	//For Object Pooling
 	//Enemies
-	void CreateEnemyPool(int count);
+	void CreateEnemyPool(int count, std::vector<Vector2*> gridPaths);
 	//void ReturnEnemy(Enemies* enemy);
 
 	//Getter for the map's enemies

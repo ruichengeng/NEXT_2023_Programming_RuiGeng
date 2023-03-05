@@ -1,13 +1,6 @@
 #pragma once
 #include "GameObject.h"
 
-enum WallBlockType
-{
-	INDESTRUCTIBLE,
-	DESTRUCTIBLE,
-	DESTRUCTIBLE_LOOT
-};
-
 class WallBlock : public GameObject
 {
 public:
