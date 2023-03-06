@@ -37,7 +37,9 @@ public:
 	void RenderPlayerElements();
 	std::vector<Bomb*> GetPlayerBombs();
 
+	//Game Object Interactions
 	void EnemyKilled(Enemies* enemy);
+	void LootCrateCollected(WallBlock* crate);
 
 	//Setting the empty spaces
 	void SetBombSpawnablePos(std::vector<Vector2*> pos);
@@ -69,4 +71,5 @@ private:
 
 	std::vector<Vector2*> potentialBombSpawnPos;
 	std::vector<Enemies*> allEnemiesKilled;
+	std::vector<WallBlock*> allLootCrates;
 };

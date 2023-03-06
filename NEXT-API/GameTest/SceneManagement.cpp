@@ -336,6 +336,11 @@ void SceneManagement::CollisionChecks()
 						if (!mapFound) LoadLevel(MAP_2, new std::vector<std::string>());
 						//For future improvements, use teleport class that will include a link to the connected place
 					}
+					else if (wall->BlockType == DESTRUCTIBLE_LOOT)
+					{
+						wall->isActive = false;
+						player->LootCrateCollected(wall);
+					}
 					else
 					{
 						player->PlayerTouchedWall(wall);

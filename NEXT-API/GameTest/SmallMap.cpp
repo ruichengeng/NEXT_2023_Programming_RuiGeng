@@ -42,6 +42,10 @@ void SmallMap::CreateGrid(int x, int y)
 
 			mapGridIntersections.push_back(Vector2(i * dx + qx, j * dy + qy));
 
+			///
+			/// Temporary Values, can be generalized according to a rule and seeds
+			///
+
 			//Checks for border points
 			if (((i == x) || (i == 0)) || ((j == y) || (j == 0)))
 			{
@@ -61,6 +65,22 @@ void SmallMap::CreateGrid(int x, int y)
 			if (i == 3 && j == 7)
 			{
 				WallBlock* newWallBlock = new WallBlock(Vector2(i * dx + qx, j * dy + qy), Vector2(x, y), 3);
+				mapWallBlocks.push_back(newWallBlock);
+
+				gridOccupiedByBlock = true;
+			}
+
+			if (i == 5 && j == 7)
+			{
+				WallBlock* newWallBlock = new WallBlock(Vector2(i * dx + qx, j * dy + qy), Vector2(x, y), 2);
+				mapWallBlocks.push_back(newWallBlock);
+
+				gridOccupiedByBlock = true;
+			}
+
+			if (i == 1 && j == 3)
+			{
+				WallBlock* newWallBlock = new WallBlock(Vector2(i * dx + qx, j * dy + qy), Vector2(x, y), 2);
 				mapWallBlocks.push_back(newWallBlock);
 
 				gridOccupiedByBlock = true;

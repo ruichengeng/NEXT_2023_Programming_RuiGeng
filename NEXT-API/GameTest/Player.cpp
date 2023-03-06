@@ -58,7 +58,7 @@ bool Player::PlaceBomb(int bombType)
 		
 				if (spawnPos.x != -1 && spawnPos.y != -1)
 				{
-					if (!bombPool[a]->hasUsed)
+					if (!bombPool[a]->hasUsed) //Important for reusing the bomb
 					{
 						bombPool[a]->SetBomb(spawnPos.x, spawnPos.y);
 						//bombPool[a]->SetBomb(x, y);
@@ -135,6 +135,20 @@ void Player::EnemyKilled(Enemies* enemy)
 
 	allEnemiesKilled.push_back(enemy);
 	playerStatistics.EnemyKills = allEnemiesKilled.size();
+}
+
+void Player::LootCrateCollected(WallBlock* crate)
+{
+	for (auto c : allLootCrates)
+	{
+		if (c == crate)
+		{
+			return;
+		}
+	}
+
+	allLootCrates.push_back(crate);
+	playerStatistics.XP = allLootCrates.size() * 50; //Temp value of 50, can be generalized
 }
 
 void Player::SetBombSpawnablePos(std::vector<Vector2*> pos)
