@@ -117,7 +117,7 @@ void SceneManagement::UpdateSceneComponents(float deltaTime)
 			std::vector<std::string>* data = new std::vector<std::string>();
 
 			data->push_back("Enemies Killed: " + std::to_string(player->GetPlayerStatistics().EnemyKills));
-			data->push_back("Time Survived: " + std::to_string((int)roundf(player->GetPlayerStatistics().timeElapsed)));
+			data->push_back("Time Survived: " + std::to_string((int)roundf(player->GetPlayerStatistics().timeElapsed)) + 's');
 			LoadLevel(END, data);
 		}
 	}	

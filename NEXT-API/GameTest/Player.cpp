@@ -220,12 +220,12 @@ void Player::RenderUIComponents()
 	std::string enemy = "Enemy Killed: " + std::to_string(playerStatistics.EnemyKills);
 	std::string xp = "XP: " + std::to_string(playerStatistics.XP);
 	std::string time = "Time: " + std::to_string((int)roundf(playerStatistics.timeElapsed)) + "s";
-	App::Print(512, 700, level.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(512, 650, lives.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(512, 600, bomb.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(512, 550, enemy.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(512, 500, xp.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(512, 450, time.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(32, 900, level.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(32, 875, lives.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(32, 850, bomb.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(32, 825, enemy.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(32, 800, xp.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(32, 775, time.c_str(), 0.0f, 0.0f, 0.0f);
 }
 
 Vector2 Player::FindBombLocation()
