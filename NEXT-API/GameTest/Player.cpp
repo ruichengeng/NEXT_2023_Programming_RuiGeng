@@ -4,18 +4,11 @@
 #include "SceneManagement.h"
 #include "Enemies.h"
 
-Player::Player():Player(0, std::vector<Vector2*>()) {}
+Player::Player():Player(PLAYER_DEFAULT, std::vector<Vector2*>()) {}
 
-Player::Player(int id, std::vector<Vector2*> ai_path):GameObject(24.0f), potentialBombSpawnPos(ai_path), allEnemiesKilled(std::vector<Enemies*>())
+Player::Player(PLAYER_TYPES id, std::vector<Vector2*> ai_path):GameObject(24.0f), playerType(id), potentialBombSpawnPos(ai_path), allEnemiesKilled(std::vector<Enemies*>())
 {
-	//For character selection, the id can be added to the end of the name. I.e: Player0, Player1, etc
-	CreateGOSprite(".\\Art\\NeoEarlyBomberman.bmp", 7, 4, 430.0f, 512.0f, 1.0f);
-	CreateGOAnimation(ANIM_BACKWARDS, 1.0f / 15.0f, { 0,1,2,3,4,5,6 });
-	CreateGOAnimation(ANIM_RIGHT, 1.0f / 15.0f, { 7,8,9,10,11,12,13 });
-	CreateGOAnimation(ANIM_FORWARDS, 1.0f / 15.0f, { 14,15,16,17,18,19,20 });
-	CreateGOAnimation(ANIM_LEFT, 1.0f / 15.0f, { 21,22,23,24,25,26,27 });
-
-	initialPos = Vector2(430.0f, 512.0f);
+	ChangePlayerType(id);
 	ResetPlayer();
 }
 
@@ -212,6 +205,48 @@ void Player::ShowPlayerDebugCollider(bool draw)
 	}
 }
 
+void Player::ChangePlayerType(PLAYER_TYPES type, bool isInitial)
+{
+	playerType = type;
+	float x = 430.0f;
+	float y = 512.0f;
+
+	if (!isInitial)
+	{
+		GetSprite()->GetPosition(x, y);
+	}
+	else
+	{
+		initialPos = Vector2(x, y);
+	}
+
+	//For character selection and changes
+	switch (playerType)
+	{
+	case PLAYER_DEFAULT:
+		CreateGOSprite(".\\Art\\NeoEarlyBomberman.bmp", 7, 4, x, y, 1.0f);
+		CreateGOAnimation(ANIM_BACKWARDS, 1.0f / 15.0f, { 0,1,2,3,4,5,6 });
+		CreateGOAnimation(ANIM_RIGHT, 1.0f / 15.0f, { 7,8,9,10,11,12,13 });
+		CreateGOAnimation(ANIM_FORWARDS, 1.0f / 15.0f, { 14,15,16,17,18,19,20 });
+		CreateGOAnimation(ANIM_LEFT, 1.0f / 15.0f, { 21,22,23,24,25,26,27 });
+		break;
+	case PLAYER_RED:
+		CreateGOSprite(".\\Art\\player_red.bmp", 8, 1, x, y, 1.0f);
+		CreateGOAnimation(ANIM_FORWARDS, 1.0f / 15.0f, { 6, 7 });
+		CreateGOAnimation(ANIM_RIGHT, 1.0f / 15.0f, { 0, 1 });
+		CreateGOAnimation(ANIM_BACKWARDS, 1.0f / 15.0f, { 4, 5 });
+		CreateGOAnimation(ANIM_LEFT, 1.0f / 15.0f, { 2, 3 });
+		break;
+	case PLAYER_BLUE:
+		CreateGOSprite(".\\Art\\player_blue.bmp", 8, 1, x, y, 1.0f);
+		CreateGOAnimation(ANIM_FORWARDS, 1.0f / 15.0f, { 6, 7 });
+		CreateGOAnimation(ANIM_RIGHT, 1.0f / 15.0f, { 0, 1 });
+		CreateGOAnimation(ANIM_BACKWARDS, 1.0f / 15.0f, { 4, 5 });
+		CreateGOAnimation(ANIM_LEFT, 1.0f / 15.0f, { 2, 3 });
+		break;
+	}
+}
+
 void Player::RenderUIComponents()
 {
 	std::string level = "Level: " + std::to_string(playerStatistics.CharacterLevel);
@@ -220,12 +255,12 @@ void Player::RenderUIComponents()
 	std::string enemy = "Enemy Killed: " + std::to_string(playerStatistics.EnemyKills);
 	std::string xp = "XP: " + std::to_string(playerStatistics.XP);
 	std::string time = "Time: " + std::to_string((int)roundf(playerStatistics.timeElapsed)) + "s";
-	App::Print(32, 900, level.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(32, 875, lives.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(32, 850, bomb.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(32, 825, enemy.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(32, 800, xp.c_str(), 0.0f, 0.0f, 0.0f);
-	App::Print(32, 775, time.c_str(), 0.0f, 0.0f, 0.0f);
+	App::Print(32, 900, level.c_str());
+	App::Print(32, 875, lives.c_str());
+	App::Print(32, 850, bomb.c_str());
+	App::Print(32, 825, enemy.c_str());
+	App::Print(32, 800, xp.c_str());
+	App::Print(32, 775, time.c_str());
 }
 
 Vector2 Player::FindBombLocation()

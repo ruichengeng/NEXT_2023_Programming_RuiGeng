@@ -17,7 +17,7 @@ void Map1::CreateEnemyPool(int count, std::vector<Vector2*> gridPaths)
 	for (int e = 0; e < count; e++)
 	{
 		//Enemies* newEnemy = new Enemies(rand() % 4, gridPaths); Random Enemy Type Spawn, under testing
-		Enemies* newEnemy = new Enemies(e % 4, gridPaths);
+		Enemies* newEnemy = new Enemies(e % 5, gridPaths);
 		newEnemy->SetEnemyState(Vector2(128.0f + e * 128, 128.0f + e * 128), (MovementDirection)(1 + (e%4)));
 		mapEnemyPool.push_back(newEnemy);
 	}
@@ -80,13 +80,6 @@ void Map1::CreateGrid(int x, int y)
 			if (!gridOccupiedByBlock) emptyGridPoints.push_back(new Vector2(i * dx, j * dy));
 		}
 	}
-
-
-	//Creates the wall block pool
-
-	//TESTING
-	//jkladsfhljkdshfkajsdhfjklahsdfjkhasdklf
-
 
 	for (auto border : borderPoints)
 	{

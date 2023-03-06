@@ -3,7 +3,7 @@
 
 SceneManagement::SceneManagement()
 {
-	player = new Player(0, std::vector<Vector2*>());
+	player = new Player(PLAYER_DEFAULT, std::vector<Vector2*>());
 	LoadLevel(INTRO, new std::vector<std::string>());
 	//LoadLevel(MAP_1);
 }
@@ -187,6 +187,7 @@ void SceneManagement::UpdateInput(float deltaTime)
 
 			if (App::IsKeyPressed(VK_LSHIFT))
 			{
+				//player->ChangePlayerType(PLAYER_RED, false);
 				LoadLevel(PAUSE, new std::vector<std::string>());
 			}
 

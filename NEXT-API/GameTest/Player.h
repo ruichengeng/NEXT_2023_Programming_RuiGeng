@@ -26,7 +26,7 @@ class Player : public GameObject
 public:
 	Player();
 	//The below constructor is used for character select if the player has multiple options
-	Player(int id, std::vector<Vector2*> ai_path);
+	Player(PLAYER_TYPES id, std::vector<Vector2*> ai_path);
 	~Player() {}
 
 	//Bomb object-pool and related functions
@@ -58,6 +58,9 @@ public:
 
 	void ShowPlayerDebugCollider(bool draw);
 
+	//Change Player Type
+	void ChangePlayerType(PLAYER_TYPES type, bool isInitial = true);
+
 private:
 	void RenderUIComponents();
 	Vector2 FindBombLocation();
@@ -72,4 +75,6 @@ private:
 	std::vector<Vector2*> potentialBombSpawnPos;
 	std::vector<Enemies*> allEnemiesKilled;
 	std::vector<WallBlock*> allLootCrates;
+
+	PLAYER_TYPES playerType;
 };

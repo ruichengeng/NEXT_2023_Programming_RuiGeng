@@ -34,7 +34,7 @@ void Scene::Render()
 
 	for (std::string text : *sceneStrings)
 	{
-		App::Print(512, startPos, text.c_str());
+		App::Print(400, startPos, text.c_str());
 		startPos -= 50.0f;
 	}
 
@@ -50,19 +50,19 @@ void Scene::Render()
 	switch (Scene_Type)
 	{
 	case INTRO:
-		App::Print(512, 300, "'Space' - Start Game - Drop Bomb");
-		App::Print(512, 250, "'W, A, S, D' - Movement");
-		App::Print(512, 200, "'Left Shift' - Pause Game");
-		App::Print(512, 150, "'Right Shift' - Show Collider Debug");
-		App::Print(512, 100, "'Esc' - Quit");
+		App::Print(400, 500, "'Space' - Start Game - Drop Bomb");
+		App::Print(400, 450, "'W, A, S, D' - Movement");
+		App::Print(400, 400, "'Left Shift' - Pause Game");
+		App::Print(400, 350, "'Right Shift' - Show Collider Debug");
+		App::Print(400, 300, "'Esc' - Quit");
 		break;
 	case PAUSE:
-		App::Print(512, 200, "'Left Shift' - Resume");
-		App::Print(512, 150, "'Esc' - Quit");
+		App::Print(400, 500, "'Left Shift' - Resume");
+		App::Print(400, 450, "'Esc' - Quit");
 		break;
 	case END:
-		App::Print(512, 200, "'Left Shift' - Main Menu");
-		App::Print(512, 150, "'Esc' - Quit");
+		App::Print(400, 400, "'Left Shift' - Main Menu");
+		App::Print(400, 350, "'Esc' - Quit");
 		break;
 	}
 }

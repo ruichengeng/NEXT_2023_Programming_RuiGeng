@@ -61,6 +61,9 @@
     <ClCompile Include="App\TextureLoader.cpp">
       <Filter>API Provided</Filter>
     </ClCompile>
+    <ClCompile Include="PickUp.cpp">
+      <Filter>Interactables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WallBlock.h">
@@ -129,6 +132,9 @@
     <ClInclude Include="App\TextureLoader.h">
       <Filter>API Provided</Filter>
     </ClInclude>
+    <ClInclude Include="PickUp.h">
+      <Filter>Interactables</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Challenge Entry">
@@ -148,6 +154,9 @@
     </Filter>
     <Filter Include="API Provided">
       <UniqueIdentifier>{52cba162-0299-4923-927d-25a2bdc37e60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interactables">
+      <UniqueIdentifier>{ca5ad697-927e-49c9-a483-7e9c315b546a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
