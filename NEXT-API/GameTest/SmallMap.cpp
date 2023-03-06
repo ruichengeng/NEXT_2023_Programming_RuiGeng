@@ -69,20 +69,43 @@ void SmallMap::CreateGrid(int x, int y)
 
 				gridOccupiedByBlock = true;
 			}
-
-			if (i == 5 && j == 7)
+			else if (i == 5 && j == 7)
 			{
 				WallBlock* newWallBlock = new WallBlock(Vector2(i * dx + qx, j * dy + qy), Vector2(x, y), 2);
 				mapWallBlocks.push_back(newWallBlock);
 
 				gridOccupiedByBlock = true;
 			}
-
-			if (i == 1 && j == 3)
+			else if (i == 1 && j == 3)
 			{
 				WallBlock* newWallBlock = new WallBlock(Vector2(i * dx + qx, j * dy + qy), Vector2(x, y), 2);
 				mapWallBlocks.push_back(newWallBlock);
 
+				gridOccupiedByBlock = true;
+			}
+			else if (i == 1 && j == 1)
+			{
+				mapPickUpItems.push_back(new PickUp(PICKUP_APPLE, Vector2(i * dx + qx, j * dy + qy)));
+				gridOccupiedByBlock = true;
+			}
+			else if (i == 3 && j == 1)
+			{
+				mapPickUpItems.push_back(new PickUp(PICKUP_CHERRY, Vector2(i * dx + qx, j * dy + qy)));
+				gridOccupiedByBlock = true;
+			}
+			else if (i == 5 && j == 1)
+			{
+				mapPickUpItems.push_back(new PickUp(PICKUP_KEY, Vector2(i * dx + qx, j * dy + qy)));
+				gridOccupiedByBlock = true;
+			}
+			else if (i == 7 && j == 1)
+			{
+				mapPickUpItems.push_back(new PickUp(PICKUP_PEAR, Vector2(i * dx + qx, j * dy + qy)));
+				gridOccupiedByBlock = true;
+			}
+			else if (i == 7 && j == 7)
+			{
+				mapPickUpItems.push_back(new PickUp(PICKUP_STRAWBERRY, Vector2(i * dx + qx, j * dy + qy)));
 				gridOccupiedByBlock = true;
 			}
 
@@ -92,9 +115,6 @@ void SmallMap::CreateGrid(int x, int y)
 
 
 	//Creates the wall block pool
-
-	//TESTING
-	//jkladsfhljkdshfkajsdhfjklahsdfjkhasdklf
 
 	for (auto border : borderPoints)
 	{
@@ -121,5 +141,10 @@ void SmallMap::CreateChildrenElements()
 	for (auto w : mapWallBlocks)
 	{
 		allChildren.push_back(w);
+	}
+
+	for (auto p : mapPickUpItems)
+	{
+		allChildren.push_back(p);
 	}
 }

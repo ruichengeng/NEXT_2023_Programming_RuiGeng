@@ -187,7 +187,6 @@ void SceneManagement::UpdateInput(float deltaTime)
 
 			if (App::IsKeyPressed(VK_LSHIFT))
 			{
-				//player->ChangePlayerType(PLAYER_RED, false);
 				LoadLevel(PAUSE, new std::vector<std::string>());
 			}
 
@@ -346,6 +345,19 @@ void SceneManagement::CollisionChecks()
 					{
 						player->PlayerTouchedWall(wall);
 					}
+				}
+			}
+		}
+
+		//Check between player and pickups
+		for (auto pickups : loadedMaps[activeLevel.y]->GetMapPickUpItems())
+		{
+			if (pickups->isActive)
+			{
+				if (CollisionManager::instance().hasHitAABB(player, pickups))
+				{
+					pickups->isActive = false;
+					player->PickUpItemCollected(pickups);
 				}
 			}
 		}

@@ -1,6 +1,7 @@
 #pragma once
 #include "Enemies.h"
 #include "WallBlock.h"
+#include "PickUp.h"
 
 class MapBase
 {
@@ -26,6 +27,8 @@ public:
 	//Getter for the map's walls
 	std::vector<WallBlock*> GetMapWalls();
 
+	std::vector<PickUp*> GetMapPickUpItems();
+
 	//Grid System
 	virtual void CreateGrid(int x, int y) {}
 
@@ -44,6 +47,7 @@ public:
 
 	std::vector<Enemies*> mapEnemyPool;
 	std::vector<WallBlock*> mapWallBlocks;
+	std::vector<PickUp*> mapPickUpItems;
 
 	//Grid
 	std::vector<Vector2> mapGridIntersections;

@@ -14,6 +14,17 @@ void MapBase::Update(float deltaTime)
 	{
 		if (wall->BlockType != INDESTRUCTIBLE) wall->Update(deltaTime);
 	}
+
+	for (auto pickup : mapPickUpItems)
+	{
+		pickup->Update(deltaTime);
+	}
+
+	//Generalizing all the above to allchildren
+	//for (auto c : allChildren)
+	//{
+	//	c->Update(deltaTime);
+	//}
 }
 
 void MapBase::Render()
@@ -31,6 +42,19 @@ void MapBase::Render()
 	{
 		if (mapEnemyPool[e]->isActive) mapEnemyPool[e]->Render();
 	}
+
+	//Draw pickups
+	for (int p = 0; p < mapPickUpItems.size(); p++)
+	{
+		if (mapPickUpItems[p]->isActive) mapPickUpItems[p]->Render();
+	}
+
+
+	//Generalizing all the above to allChildren
+	//for (auto c : allChildren)
+	//{
+	//	if (c->isActive) c->Render();
+	//}
 
 	if (Map_Debug)
 	{
@@ -53,6 +77,11 @@ std::vector<Enemies*> MapBase::GetMapEnemies()
 std::vector<WallBlock*> MapBase::GetMapWalls()
 {
 	return mapWallBlocks;
+}
+
+std::vector<PickUp*> MapBase::GetMapPickUpItems()
+{
+	return mapPickUpItems;
 }
 
 void MapBase::DrawDebugElements(bool draw)

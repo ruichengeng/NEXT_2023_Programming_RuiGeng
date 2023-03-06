@@ -19,6 +19,7 @@ public:
 class WallBlock;
 class SceneManagement;
 class Enemies;
+class PickUp;
 
 //Player class, responsible for the character selection and behaviours
 class Player : public GameObject
@@ -40,6 +41,7 @@ public:
 	//Game Object Interactions
 	void EnemyKilled(Enemies* enemy);
 	void LootCrateCollected(WallBlock* crate);
+	void PickUpItemCollected(PickUp* item);
 
 	//Setting the empty spaces
 	void SetBombSpawnablePos(std::vector<Vector2*> pos);
@@ -75,6 +77,7 @@ private:
 	std::vector<Vector2*> potentialBombSpawnPos;
 	std::vector<Enemies*> allEnemiesKilled;
 	std::vector<WallBlock*> allLootCrates;
+	std::vector<PickUp*> allItemsPickedUp;
 
 	PLAYER_TYPES playerType;
 };

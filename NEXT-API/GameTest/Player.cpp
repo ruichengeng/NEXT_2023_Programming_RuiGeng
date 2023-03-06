@@ -3,10 +3,11 @@
 #include "WallBlock.h"
 #include "SceneManagement.h"
 #include "Enemies.h"
+#include "PickUp.h"
 
 Player::Player():Player(PLAYER_DEFAULT, std::vector<Vector2*>()) {}
 
-Player::Player(PLAYER_TYPES id, std::vector<Vector2*> ai_path):GameObject(24.0f), playerType(id), potentialBombSpawnPos(ai_path), allEnemiesKilled(std::vector<Enemies*>())
+Player::Player(PLAYER_TYPES id, std::vector<Vector2*> ai_path):GameObject(24.0f), playerType(id), potentialBombSpawnPos(ai_path)//, allEnemiesKilled(std::vector<Enemies*>())
 {
 	ChangePlayerType(id);
 	ResetPlayer();
@@ -142,6 +143,40 @@ void Player::LootCrateCollected(WallBlock* crate)
 
 	allLootCrates.push_back(crate);
 	playerStatistics.XP = allLootCrates.size() * 50; //Temp value of 50, can be generalized
+}
+
+void Player::PickUpItemCollected(PickUp* item)
+{
+	for (auto p : allItemsPickedUp)
+	{
+		if (p == item)
+		{
+			return;
+		}
+	}
+
+	switch (item->PickUp_Type)
+	{
+	case PICKUP_APPLE: //Change Player To Red
+		ChangePlayerType(PLAYER_RED, false);
+		break;
+	case PICKUP_CHERRY: //Add 1 Life
+		playerStatistics.Lives++;
+		break;
+	case PICKUP_KEY: //Change Player To Blue
+		ChangePlayerType(PLAYER_BLUE, false);
+		break;
+	case PICKUP_PEAR: //Change Player To Default
+		ChangePlayerType(PLAYER_DEFAULT, false);
+		break;
+	case PICKUP_STRAWBERRY: //Time Decrease by 10 seconds (can't be negative but the decrement value can be changed later)
+		(playerStatistics.timeElapsed > 10.0f) ? playerStatistics.timeElapsed -= 10.0f : playerStatistics.timeElapsed = 0.0f;
+		break;
+	default:
+		break;
+	}
+
+	allItemsPickedUp.push_back(item);
 }
 
 void Player::SetBombSpawnablePos(std::vector<Vector2*> pos)

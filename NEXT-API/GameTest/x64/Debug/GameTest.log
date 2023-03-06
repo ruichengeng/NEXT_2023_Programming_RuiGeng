@@ -1,14 +1,24 @@
-﻿  Map1.cpp
+﻿  SceneManagement.cpp
 C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\AI.h(7,14): warning C4099: 'Vector2': type name first seen using 'struct' now seen using 'class'
 C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\EnumAndHelper.h(85,8): message : see declaration of 'Vector2'
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\Map1.cpp(36,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\Map1.cpp(37,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\Map1.cpp(74,81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\Map1.cpp(74,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\Map1.cpp(86,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\Map1.cpp(86,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\Map1.cpp(92,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\Map1.cpp(92,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(35,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(40,45): warning C4244: 'argument': conversion from 'unsigned __int64' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(51,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(57,43): warning C4244: 'argument': conversion from 'unsigned __int64' to 'float', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(108,29): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(110,26): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(294,31): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(296,28): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(301,29): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(303,26): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(312,53): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(315,42): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(332,29): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(353,45): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(366,43): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(378,43): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(382,44): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\GameTest\SceneManagement.cpp(409,47): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
   GameTest.vcxproj -> C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\x64\Debug\GameTest.exe
   C:\Users\ruich\Documents\GitHub\Personal\NEXT_2023_Programming_RuiGeng\NEXT-API\\GameTest\glut\bin\x64\freeglut.dll
   1 File(s) copied
