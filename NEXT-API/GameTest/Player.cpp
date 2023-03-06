@@ -224,8 +224,10 @@ void Player::ResetPlayer()
 {
 	playerStatistics = PlayerStat();
 	isOutOfLife = false;
-
+	ChangePlayerType(PLAYER_DEFAULT);
 	bombPool.clear();
+	allLootCrates.clear();
+	allItemsPickedUp.clear();
 	//AddToBombPool(10, 0);
 	GetSprite()->SetPosition(initialPos.x, initialPos.y);
 }

@@ -15,8 +15,17 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* m
 		//Resets the player stats and maps after coming from the end screen
 
 		for (auto map : loadedMaps)
-		{
-			map->ResetMap();
+		{			
+			if (id == MAP_1 && map->Map_Type == MAP_1)
+			{
+				map->ResetMap();
+				map->CreateGrid(16, 16);
+			}
+			else if (id == MAP_2 && map->Map_Type == MAP_2)
+			{
+				map->ResetMap();
+				map->CreateGrid(8, 8);
+			}
 		}
 		player->ResetPlayer();
 	}
@@ -58,11 +67,15 @@ void SceneManagement::LoadLevel(SCENE_LEVEL_TYPE id, std::vector<std::string>* m
 
 		if ((SCENE_LEVEL_TYPE)id == MAP_1)
 		{
-			loadedMaps.push_back(new Map1());
+			Map1* newMap1 = new Map1();
+			newMap1->CreateGrid(16, 16);
+			loadedMaps.push_back(newMap1);
 		}
 		else if ((SCENE_LEVEL_TYPE)id == MAP_2)
 		{
-			loadedMaps.push_back(new SmallMap());
+			SmallMap* newSmallMap = new SmallMap();
+			newSmallMap->CreateGrid(8, 8);
+			loadedMaps.push_back(newSmallMap);
 		}
 
 		player->SetBombSpawnablePos(loadedMaps[loadedMaps.size()-1]->emptyGridPoints);
@@ -90,18 +103,7 @@ void SceneManagement::UpdateSceneComponents(float deltaTime)
 {
 	UpdateInput(deltaTime);
 
-	if (activeLevel.x == 0) //Game Scenes
-	{
-		if (activeType == END)
-		{
-
-		}
-		//if (loadedScenes[activeLevel.y] != nullptr)
-		//{
-		//	loadedScenes[activeLevel.y]->Update(deltaTime);
-		//}
-	}
-	else if (activeLevel.x == 1) //Game Map Levels
+	if (activeLevel.x == 1) //Game Map Levels
 	{
 		CollisionChecks();
 

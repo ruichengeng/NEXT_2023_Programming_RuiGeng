@@ -105,4 +105,15 @@ void MapBase::ResetMap()
 	{
 		enemy->ResetGameObject();
 	}
+
+	for (auto item : mapPickUpItems)
+	{
+		item->ResetGameObject();
+	}
+
+	//Generalized all the above with allChildren
+	//for (auto c : allChildren)
+	//{
+	//	c->ResetGameObject();
+	//}
 }

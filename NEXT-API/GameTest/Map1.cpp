@@ -7,7 +7,7 @@ Map1::Map1():MapBase(MAP_1)
 	mapBackgroundSprite->SetPosition(512.0f, 512.0f);
 	mapBackgroundSprite->SetScale(1.0f);
 
-	CreateGrid(16, 16);
+	//CreateGrid(16, 16);
 }
 
 void Map1::CreateEnemyPool(int count, std::vector<Vector2*> gridPaths)

@@ -6,7 +6,7 @@ SmallMap::SmallMap() : MapBase(MAP_2)
 	mapBackgroundSprite = App::CreateSprite(".\\Art\\background_dirt.bmp", 1, 1);
 	mapBackgroundSprite->SetPosition(512.0f, 512.0f);
 	mapBackgroundSprite->SetScale(1.0f);
-	CreateGrid(8, 8);
+	//CreateGrid(8, 8);
 }
 
 void SmallMap::CreateWallBlockPool(int count)
@@ -17,6 +17,7 @@ void SmallMap::CreateGrid(int x, int y)
 {
 	mapGridIntersections.clear();
 	mapWallBlocks.clear();
+	mapPickUpItems.clear();
 
 	//Distance between the adjascent point
 	float dx = APP_VIRTUAL_WIDTH / (x * 2.0f);
@@ -98,7 +99,7 @@ void SmallMap::CreateGrid(int x, int y)
 				mapPickUpItems.push_back(new PickUp(PICKUP_KEY, Vector2(i * dx + qx, j * dy + qy)));
 				gridOccupiedByBlock = true;
 			}
-			else if (i == 7 && j == 1)
+			else if (i == 7 && j == 5)
 			{
 				mapPickUpItems.push_back(new PickUp(PICKUP_PEAR, Vector2(i * dx + qx, j * dy + qy)));
 				gridOccupiedByBlock = true;
@@ -130,7 +131,6 @@ void SmallMap::CreateGrid(int x, int y)
 
 
 	//Empty Grid Points
-	CreateEnemyPool(1, emptyGridPoints);
 	CreateChildrenElements();
 }
 

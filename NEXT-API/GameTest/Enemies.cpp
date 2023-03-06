@@ -25,7 +25,6 @@ Enemies::Enemies(int id, std::vector<Vector2*> ai_path) : GameObject(), enemyID(
 		CreateGOAnimation(ANIM_LEFT, 1.0f / 15.0f, { 4, 5, 6, 7 });
 	}
 
-
 	enemyAI = new AI(this);
 	//enemyAI->ai_Type = (AI_TYPES)id;
 	enemyAI->ai_Type = PATROL;
