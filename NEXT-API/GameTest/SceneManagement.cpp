@@ -182,8 +182,7 @@ void SceneManagement::UpdateInput(float deltaTime)
 		{
 			if (App::IsKeyPressed(VK_SPACE))
 			{
-				player->PlaceBomb(0);
-				currentDelay = inputDelay;
+				if (player->PlaceBomb(0)) currentDelay = inputDelay;
 			}
 
 			if (App::IsKeyPressed(VK_LSHIFT))
@@ -315,29 +314,32 @@ void SceneManagement::CollisionChecks()
 		//Check between player and impassable walls
 		for (auto wall : loadedMaps[activeLevel.y]->GetMapWalls())
 		{
-			if (CollisionManager::instance().hasHitAABB(player, wall))
+			if (wall->isActive)
 			{
-				if (wall->BlockType == TELEPORT)
+				if (CollisionManager::instance().hasHitAABB(player, wall))
 				{
-					bool mapFound = false;
-
-					for (int m = 0; m < loadedMaps.size(); m++)
+					if (wall->BlockType == TELEPORT)
 					{
-						if (loadedMaps[m]->Map_Type != activeType)
-						{
-							//LoadLevel(map->Map_Type, {});
-							mapFound = true;
-							LoadLevel(loadedMaps[m]->Map_Type, new std::vector<std::string>());
-							m += loadedMaps.size();
-						}
-					}
+						bool mapFound = false;
 
-					if (!mapFound) LoadLevel(MAP_2, new std::vector<std::string>());
-					//For future improvements, use teleport class that will include a link to the connected place
-				}
-				else
-				{
-					player->PlayerTouchedWall(wall);
+						for (int m = 0; m < loadedMaps.size(); m++)
+						{
+							if (loadedMaps[m]->Map_Type != activeType)
+							{
+								//LoadLevel(map->Map_Type, {});
+								mapFound = true;
+								LoadLevel(loadedMaps[m]->Map_Type, new std::vector<std::string>());
+								m += loadedMaps.size();
+							}
+						}
+
+						if (!mapFound) LoadLevel(MAP_2, new std::vector<std::string>());
+						//For future improvements, use teleport class that will include a link to the connected place
+					}
+					else
+					{
+						player->PlayerTouchedWall(wall);
+					}
 				}
 			}
 		}
@@ -345,20 +347,29 @@ void SceneManagement::CollisionChecks()
 		//Check between player and enemies
 		for (auto enemy : loadedMaps[activeLevel.y]->GetMapEnemies())
 		{
-			if (CollisionManager::instance().hasHitAABB(player, enemy))
+			if (enemy->isActive)
 			{
-				player->PlayerDied();
+				if (CollisionManager::instance().hasHitAABB(player, enemy))
+				{
+					player->PlayerDied();
+				}
 			}
 		}
 
 		//Check between enemies and walls
 		for (auto enemy : loadedMaps[activeLevel.y]->GetMapEnemies())
 		{
-			for (auto wall : loadedMaps[activeLevel.y]->GetMapWalls())
+			if (enemy->isActive)
 			{
-				if (CollisionManager::instance().hasHitAABB(enemy, wall))
+				for (auto wall : loadedMaps[activeLevel.y]->GetMapWalls())
 				{
-					enemy->EnemyTouchedWall(wall);
+					if (wall->isActive)
+					{
+						if (CollisionManager::instance().hasHitAABB(enemy, wall))
+						{
+							enemy->EnemyTouchedWall(wall);
+						}
+					}
 				}
 			}
 		}
@@ -368,17 +379,26 @@ void SceneManagement::CollisionChecks()
 		{
 			if (bomb->isActive && bomb->Exploded)
 			{
-				if (CollisionManager::instance().hasHitAABB(player, bomb))
+				for (auto arm : bomb->GetBombArms())
 				{
-					player->PlayerDied();
-				}
-
-				for (auto enemy : loadedMaps[activeLevel.y]->GetMapEnemies())
-				{
-					if (CollisionManager::instance().hasHitAABB(bomb, enemy))
+					if (arm->isActive)
 					{
-						player->EnemyKilled(enemy);
-						enemy->ExplosionDamage(1);
+						if (CollisionManager::instance().hasHitAABB(player, arm))
+						{
+							player->PlayerDied();
+						}
+
+						for (auto enemy : loadedMaps[activeLevel.y]->GetMapEnemies())
+						{
+							if (enemy->isActive)
+							{
+								if (CollisionManager::instance().hasHitAABB(arm, enemy))
+								{
+									player->EnemyKilled(enemy);
+									enemy->ExplosionDamage(1);
+								}
+							}
+						}
 					}
 				}
 			}

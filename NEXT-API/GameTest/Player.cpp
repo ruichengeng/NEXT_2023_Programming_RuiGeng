@@ -19,33 +19,61 @@ Player::Player(int id, std::vector<Vector2*> ai_path):GameObject(24.0f), potenti
 	ResetPlayer();
 }
 
-void Player::PlaceBomb(int bombType)
+bool Player::PlaceBomb(int bombType)
 {
 	if ((currentSpawnCoolDown == 0.0f) && (playerStatistics.BombCount > 0))
 	{
 		float x, y;
+		bool hasAvailableBomb = true;
 		GetSprite()->GetPosition(x, y);
+
+		//For now we will create a new bomb game object each time
+		//Optimized sorting and reuse is below
+
+		//if (bombPool.size() != 0)
+		//{
+		//	if (!bombPool[bombPool.size() - 1]->Exploded && !bombPool[bombPool.size() - 1]->isActive)
+		//	{
+		//		Vector2 spawnPos = FindBombLocation();
+		//
+		//		if (spawnPos.x != -1 && spawnPos.y != -1)
+		//		{
+		//			bombPool[bombPool.size() - 1]->SetBomb(spawnPos.x, spawnPos.y);
+		//			//bombPool[a]->SetBomb(x, y);
+		//			currentSpawnCoolDown = bombSpawnCoolDown;
+		//			playerStatistics.BombCount--;
+		//		}
+		//		return true;
+		//	}
+		//}
+
+
+		//Object Pool Sorting - in testing
 
 		for (int a = 0; a < bombPool.size(); a++)
 		{
 			if (!bombPool[a]->Exploded && !bombPool[a]->isActive)
 			{
 				Vector2 spawnPos = FindBombLocation();
-
+		
 				if (spawnPos.x != -1 && spawnPos.y != -1)
 				{
-					bombPool[a]->SetBomb(spawnPos.x, spawnPos.y);
-					//bombPool[a]->SetBomb(x, y);
-					currentSpawnCoolDown = bombSpawnCoolDown;
-					playerStatistics.BombCount--;
+					if (!bombPool[a]->hasUsed)
+					{
+						bombPool[a]->SetBomb(spawnPos.x, spawnPos.y);
+						//bombPool[a]->SetBomb(x, y);
+						currentSpawnCoolDown = bombSpawnCoolDown;
+						playerStatistics.BombCount--;
+						return true;
+					}
 				}
-				return;
 			}
 		}
 
 		AddToBombPool(1, bombType);
-		PlaceBomb(bombType);
+		//PlaceBomb(bombType);
 	}
+	return false;
 }
 
 void Player::AddToBombPool(int count, int bombType)
@@ -53,7 +81,7 @@ void Player::AddToBombPool(int count, int bombType)
 	for (int b = 0; b < count; b++)
 	{
 		Bomb* newBomb = new Bomb(bombType, potentialBombSpawnPos);
-		newBomb->isActive = false;
+		//newBomb->ResetBomb();
 		bombPool.push_back(newBomb);
 	}
 }

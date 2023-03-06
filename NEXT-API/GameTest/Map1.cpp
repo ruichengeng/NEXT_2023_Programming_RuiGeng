@@ -16,7 +16,10 @@ void Map1::CreateEnemyPool(int count, std::vector<Vector2*> gridPaths)
 
 	for (int e = 0; e < count; e++)
 	{
-		mapEnemyPool.push_back(new Enemies(rand() % 4, gridPaths));
+		//Enemies* newEnemy = new Enemies(rand() % 4, gridPaths); Random Enemy Type Spawn, under testing
+		Enemies* newEnemy = new Enemies(e % 4, gridPaths);
+		newEnemy->SetEnemyState(Vector2(128.0f + e * 128, 128.0f + e * 128), (MovementDirection)(1 + (e%4)));
+		mapEnemyPool.push_back(newEnemy);
 	}
 }
 
@@ -99,7 +102,7 @@ void Map1::CreateGrid(int x, int y)
 
 
 	//Empty Grid Points
-	CreateEnemyPool(1, emptyGridPoints);
+	CreateEnemyPool(5, emptyGridPoints);
 	CreateChildrenElements();
 }
 

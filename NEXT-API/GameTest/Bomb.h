@@ -5,15 +5,15 @@
 class Bomb : public GameObject
 {
 public:
-	//Class for a bomb's arms components
-	class BombArm : public GameObject
-	{
-	public:
-		BombArm(Bomb* b) : OwnerBomb(b) {}
-		~BombArm() {}
-
-		Bomb* OwnerBomb;
-	};
+	////Class for a bomb's arms components
+	//class BombArm : public GameObject
+	//{
+	//public:
+	//	BombArm(Bomb* b) : OwnerBomb(b) {}
+	//	~BombArm() {}
+	//
+	//	Bomb* OwnerBomb;
+	//};
 
 public:
 	Bomb();
@@ -26,7 +26,12 @@ public:
 	void RenderBomb();
 	void Explode();
 
+	//std::vector<BombArm*> GetBombArms();
+	std::vector<GameObject*> GetBombArms();
+
 	bool Exploded = false;
+	bool hasUsed = false;
+	void ResetBomb();
 
 private:
 	//Need both x and y to be even for a uniform star explosion shape
@@ -35,7 +40,8 @@ private:
 	std::vector<Vector2> findAvailablePos(Vector2 vec, float w, float h);
 
 private:
-	float triggerTimer = 5.0f;
-	std::vector<BombArm*> bombArms;
+	float triggerTimer = 2.0f;
+	//std::vector<BombArm*> bombArms;
+	std::vector<GameObject*> bombArms;
 	std::vector<Vector2*> spawnablePos;
 };

@@ -20,6 +20,8 @@ public:
 	Enemies(int id, std::vector<Vector2*> ai_path); //ID for different types of enemies
 	~Enemies() {}
 
+	void SetEnemyState(Vector2 newPos, MovementDirection dir, AI_TYPES type = PATROL );
+
 	void ExplosionDamage(int hp_damage);//damage caused by player's bomb(s)
 	void EnemyDropTraps();//For the more "intelligent" enemies to attack back
 

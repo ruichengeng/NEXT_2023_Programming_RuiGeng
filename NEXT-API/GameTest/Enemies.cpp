@@ -37,6 +37,13 @@ Enemies::Enemies(int id, std::vector<Vector2*> ai_path) : GameObject(), enemyID(
 	enemyAI->SetUpPath(ai_path);
 }
 
+void Enemies::SetEnemyState(Vector2 newPos, MovementDirection dir, AI_TYPES type)
+{
+	GetSprite()->SetPosition(newPos.x, newPos.y);
+	enemyAI->patrolDirection = dir;
+	enemyAI->ai_Type = type;
+}
+
 void Enemies::ExplosionDamage(int hp_damage)
 {
 	///enemy hurt animation then dies

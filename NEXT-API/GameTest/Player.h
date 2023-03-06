@@ -30,7 +30,7 @@ public:
 	~Player() {}
 
 	//Bomb object-pool and related functions
-	void PlaceBomb(int bombType);
+	bool PlaceBomb(int bombType);
 	void AddToBombPool(int count, int bombType);
 	//void ReturnBomb(Bomb* b);
 	void UpdatePlayerElements(float deltaTime); //For player and bombs

@@ -5,13 +5,16 @@ Bomb::Bomb() : Bomb(0, std::vector<Vector2*>())
 {
 }
 
-Bomb::Bomb(int id, std::vector<Vector2*> emptyPos) : GameObject(), spawnablePos(emptyPos), bombArms(std::vector<BombArm*>())
+Bomb::Bomb(int id, std::vector<Vector2*> emptyPos) : GameObject(), spawnablePos(emptyPos), bombArms(std::vector<GameObject*>())
 {
 	CreateGOSprite(".\\Art\\bomb2.bmp", 11, 1, 500.0f, 500.0f, 1.0f);
 	CreateGOAnimation(ANIM_BOMB, 1.0f / 25.0f, { 0,1,2,3,4,5, 6, 7 });
 	CreateGOAnimation(ANIM_BOMB_EXPLOSION, 1.0f / 25.0f, {8, 9, 10});
 	
 	GetSprite()->SetAnimation(ANIM_BOMB);
+
+	isActive = false;
+	Exploded = false;
 }
 
 void Bomb::SetBomb(float xPos, float yPos)
@@ -32,48 +35,54 @@ void Bomb::UpdateBombState(float deltaTime)
 		{
 			if (!Exploded)
 			{
-				triggerTimer = 0.0f;
 				Explode();
 			}
 			else
 			{
-				isActive = false;
-				Exploded = false;
-				GetSprite()->SetAnimation(ANIM_BOMB);
+				ResetBomb();
 			}
 		}
 
 		if (Exploded)
 		{
-			for (auto arm : bombArms)
+			if (bombArms.size() != 0)
 			{
-				arm->Update(deltaTime);
+				for (auto arm : bombArms)
+				{
+					arm->Update(deltaTime);
+				}
 			}
 		}
-
-		Update(deltaTime);
 	}
+	Update(deltaTime);
 }
 
 void Bomb::Explode()
 {
-	Exploded = true;
-	createBombArms(4, 4); //two blocks on each side
+	createBombArms(8, 8); //two blocks on each side
 	GetSprite()->SetAnimation(ANIM_BOMB_EXPLOSION);
-	//isActive = false;
-	triggerTimer = 3.0f;
+	triggerTimer = 1.0f;
+	Exploded = true;
 }
 
 void Bomb::RenderBomb()
 {
-	for (auto arm : bombArms)
+	if (bombArms.size() != 0)
 	{
-		if (Exploded)
+		for (auto arm : bombArms)
 		{
-			arm->Render();
+			if (Exploded)
+			{
+				arm->Render();
+			}
 		}
 	}
 	Render();
+}
+
+std::vector<GameObject*> Bomb::GetBombArms()
+{
+	return bombArms;
 }
 
 void Bomb::createBombArms(int x, int y)
@@ -82,7 +91,9 @@ void Bomb::createBombArms(int x, int y)
 	int hX = x/2;
 	int hY = y/2;
 
-	std::vector<Vector2> availableCenterSpots = findAvailablePosObj(this);
+	float oX, oY;
+	GetSprite()->GetPosition(oX, oY);
+	std::vector<Vector2> availableCenterSpots = findAvailablePos(Vector2(oX, oY), ObjectRadius, ObjectRadius);
 	std::vector<Vector2> tempPos = availableCenterSpots;
 	std::vector<Vector2> tempPos2 = tempPos;
 
@@ -98,7 +109,7 @@ void Bomb::createBombArms(int x, int y)
 				//There is an extra space
 				
 				//Spawn an explosion arm
-				BombArm* arm = new BombArm(this);
+				GameObject* arm = new GameObject();
 				arm->CreateGOSprite(".\\Art\\exp_h.bmp", 1, 1, tempPos[2].x, tempPos[2].y, 1.0f);
 				bombArms.push_back(arm);
 
@@ -108,7 +119,7 @@ void Bomb::createBombArms(int x, int y)
 			else
 			{
 				//No more space
-				BombArm* arm = new BombArm(this);
+				GameObject* arm = new GameObject();
 				arm->CreateGOSprite(".\\Art\\exp_left.bmp", 1, 1, tempPos[2].x, tempPos[2].y, 1.0f);
 				bombArms.push_back(arm);
 				//Spawn an arm tip
@@ -130,7 +141,7 @@ void Bomb::createBombArms(int x, int y)
 				//There is an extra space
 
 				//Spawn an explosion arm
-				BombArm* arm = new BombArm(this);
+				GameObject* arm = new GameObject();
 				arm->CreateGOSprite(".\\Art\\exp_h.bmp", 1, 1, tempPos[3].x, tempPos[3].y, 1.0f);
 				bombArms.push_back(arm);
 
@@ -140,7 +151,7 @@ void Bomb::createBombArms(int x, int y)
 			else
 			{
 				//No more space
-				BombArm* arm = new BombArm(this);
+				GameObject* arm = new GameObject();
 				arm->CreateGOSprite(".\\Art\\exp_right.bmp", 1, 1, tempPos[3].x, tempPos[3].y, 1.0f);
 				bombArms.push_back(arm);
 				//Spawn an arm tip
@@ -162,7 +173,7 @@ void Bomb::createBombArms(int x, int y)
 				//There is an extra space
 
 				//Spawn an explosion arm
-				BombArm* arm = new BombArm(this);
+				GameObject* arm = new GameObject();
 				arm->CreateGOSprite(".\\Art\\exp_v.bmp", 1, 1, tempPos[1].x, tempPos[1].y, 1.0f);
 				bombArms.push_back(arm);
 
@@ -172,7 +183,7 @@ void Bomb::createBombArms(int x, int y)
 			else
 			{
 				//No more space
-				BombArm* arm = new BombArm(this);
+				GameObject* arm = new GameObject();
 				arm->CreateGOSprite(".\\Art\\exp_down.bmp", 1, 1, tempPos[1].x, tempPos[1].y, 1.0f);
 				bombArms.push_back(arm);
 				//Spawn an arm tip
@@ -194,7 +205,7 @@ void Bomb::createBombArms(int x, int y)
 				//There is an extra space
 
 				//Spawn an explosion arm
-				BombArm* arm = new BombArm(this);
+				GameObject* arm = new GameObject();
 				arm->CreateGOSprite(".\\Art\\exp_v.bmp", 1, 1, tempPos[0].x, tempPos[0].y, 1.0f);
 				bombArms.push_back(arm);
 
@@ -204,7 +215,7 @@ void Bomb::createBombArms(int x, int y)
 			else
 			{
 				//No more space
-				BombArm* arm = new BombArm(this);
+				GameObject* arm = new GameObject();
 				arm->CreateGOSprite(".\\Art\\exp_top.bmp", 1, 1, tempPos[0].x, tempPos[0].y, 1.0f);
 				bombArms.push_back(arm);
 				//Spawn an arm tip
@@ -215,6 +226,38 @@ void Bomb::createBombArms(int x, int y)
 
 	//Vertical
 	
+}
+
+void Bomb::ResetBomb()
+{
+	GetSprite()->SetAnimation(ANIM_BOMB);
+	isActive = false;
+	Exploded = false;
+	hasUsed = true;
+	triggerTimer = 1.5f;
+
+	//for (auto arm : bombArms)
+	//{
+	//	arm->isActive = false;
+	//}
+	//
+	//bombArms.clear();
+
+	//while (!bombArms.empty()) 
+	//{
+	//	delete bombArms.back();
+	//	bombArms.pop_back();
+	//}
+
+	for (auto arm : bombArms)
+	{
+		//delete arm;
+		//arm->isActive = false;
+		delete arm;
+		//bombArms.pop_back();
+	}
+
+	bombArms.clear();
 }
 
 std::vector<Vector2> Bomb::findAvailablePosObj(GameObject* obj)
